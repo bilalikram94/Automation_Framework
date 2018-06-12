@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from pages.home.login_page import LoginPage
 import unittest
@@ -17,6 +19,7 @@ class LoginTests(unittest.TestCase):
 
     @pytest.mark.run(order=2)
     def test_validLogin(self):
+
         self.lp.login("test@email.com", "abcabc")
         result1 = self.lp.verifyTitle()
         assert result1 == True
@@ -25,13 +28,16 @@ class LoginTests(unittest.TestCase):
 
     @pytest.mark.run(order=1)
     def test_invalidLogin(self):
+        time.sleep(3)
         self.lp.login("test@email.com", "abcabcabc")
         result = self.lp.verifyLoginFailed()
         assert result == True
 
     @pytest.mark.run(order=3)
-    def test_logout(self):
-        self.lp.verifySuccessfulLogout()
+    def test_validlogout(self):
+        self.lp.Logout()
+        result = self.lp.verifySuccessfulLogout()
+        assert result == True
 
 
 
