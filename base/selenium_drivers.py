@@ -13,6 +13,9 @@ class SeleniumDriver():
     def __init__(self, driver):
         self.driver = driver
 
+    def getTitle(self):
+        return self.driver.title
+
     def getByType(self, locatorType):
         locatorType = locatorType.lower()
         if locatorType == "id":
@@ -106,8 +109,8 @@ class SeleniumDriver():
                                                      ElementNotSelectableException])
             element = wait.until(EC.element_to_be_clickable((byType,
                                                              "stopFilter_stops-0")))
-            self.log.info("Element appeared on the web page:" +locator)
+            self.log.info("Element appeared on the web page:" + locator)
         except:
-            self.log.info("Element not appeared on the web page"+locator)
+            self.log.info("Element not appeared on the web page" + locator)
             print_stack()
         return element

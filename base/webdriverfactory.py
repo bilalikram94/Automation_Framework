@@ -7,6 +7,8 @@ It creates a webdriver instance based on browser configurations
         wdf = WebDriverFactory(driver)
         wdf.getWebDriverInstance()
 
+Is called in conftest file instead of Selenium Webdriver
+
 """
 import traceback
 
@@ -42,7 +44,7 @@ class WebDriverFactory():
         if self.browser == "iexplorer":
 
             # Set IE Driver
-            
+
             driver = webdriver.Ie()
         elif self.browser == "firefox":
             driver = webdriver.Firefox()
