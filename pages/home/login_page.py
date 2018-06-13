@@ -42,7 +42,6 @@ class LoginPage(SeleniumDriver):
         self.clickLoginButton()
 
     def verifyLoginSuccessful(self):
-
         result = self.isElementPresent(self._login_success, locatorType="xpath")
         return result
 
