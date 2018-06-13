@@ -14,7 +14,7 @@ class LoginPage(SeleniumDriver):
     _login_button = "commit"  # By Name
     _login_success = "//*[@id='navbar']//span[text()='User Settings']"  # By Xpath
     _failed_login = ".alert-danger"  # By CSS Selector
-    _user_settings = "User Settings"  # By Link-Text
+    _user_settings = "/html//div[@id='navbar']//ul[@class='nav navbar-nav navbar-right']/li[@class='dropdown']/a"  # Xpath
     _logout = "[href='\/sign_out']"  # By CSS Selector
     _logout_success = ".btn-primary.text-center"  # By CSS Selector
 
@@ -64,7 +64,7 @@ class LoginPage(SeleniumDriver):
             return False
 
     def clickUserSettings(self):
-        self.elementClick(self._user_settings, locatorType="link")
+        self.elementClick(self._user_settings, locatorType="xpath")
 
     def clickLogOut(self):
         self.elementClick(self._logout, locatorType="css")

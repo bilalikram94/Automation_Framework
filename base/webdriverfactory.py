@@ -10,12 +10,12 @@ It creates a webdriver instance based on browser configurations
 Is called in conftest file instead of Selenium Webdriver
 
 """
-import traceback
+
 
 from selenium import webdriver
 
 
-class WebDriverFactory():
+class WebDriverFactory:
 
     def __init__(self, browser):
         self.browser = browser
