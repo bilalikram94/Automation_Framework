@@ -12,14 +12,14 @@ class LoginPage(SeleniumDriver):
     _email_field = "user_email"  # By Name
     _password_field = "user_password"  # By Name
     _login_button = "commit"  # By Name
-    _login_success = "//*[@id='navbar']//span[text()='User Settings']"  # By Xpath
+    _login_success = "//input[@id='search-courses']"  # By Xpath
     _failed_login = ".alert-danger"  # By CSS Selector
     _user_settings = "/html//div[@id='navbar']//ul[@class='nav navbar-nav navbar-right']/li[@class='dropdown']/a"  # Xpath
     _logout = "[href='\/sign_out']"  # By CSS Selector
     _logout_success = ".btn-primary.text-center"  # By CSS Selector
 
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver, ClassName):
+        super(type(ClassName), ClassName).__init__(driver)
         self.driver = driver
 
     def clickLoginLink(self):
@@ -42,6 +42,7 @@ class LoginPage(SeleniumDriver):
         self.clickLoginButton()
 
     def verifyLoginSuccessful(self):
+        time.sleep(3)
         result = self.isElementPresent(self._login_success, locatorType="xpath")
         return result
 

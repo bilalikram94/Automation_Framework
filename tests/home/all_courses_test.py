@@ -1,9 +1,9 @@
 import unittest
 import time
 import pytest
-
 from pages.home.login_page import LoginPage
 from pages.home.all_courses import AllCourses
+from utilities.teststatus import TestStatus
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
@@ -11,8 +11,9 @@ class AllCoursesTest(unittest.TestCase):
 
     @pytest.fixture(autouse=True)
     def ClassSetUp(self, oneTimeSetUp):
-        self.lp = LoginPage(self.driver)
-        self.ac = AllCourses(self.driver)
+        self.lp = LoginPage(self.driver, LoginPage)
+        self.ac = AllCourses(self.driver, AllCourses)
+        self.ts = TestStatus(self.driver, TestStatus)
         self.lp.login("test@email.com", "abcabc")
         time.sleep(3)
 
@@ -20,15 +21,15 @@ class AllCoursesTest(unittest.TestCase):
     def test_course(self):
         self.ac.clickAllCourseLink()
         time.sleep(3)
-        result1 = self.ac.verifyAllCourse()
-        assert result1 == True
+        result = self.ac.verifyAllCourse()
+        self.ts.mark(result, "Can't Locate All Courses")
         time.sleep(3)
         self.ac.clickCourseLink()
-        result = self.ac.verifyCourse()
-        assert result == True
+        result1 = self.ac.verifyCourse()
+        self.ts.mark(result1, "Can't Verify Course")
         self.lp.Logout()
         result2 = self.lp.verifySuccessfulLogout()
-        assert result2 == True
+        self.ts.markFinal("test_Courses", result2, "Logout unsuccessful")
 
     #@pytest.mark.run(order=2)
     #def test_logout(self):
