@@ -18,5 +18,4 @@ def customLogger(logLevel=logging.DEBUG):
     logger.addHandler(fileHandler)
     # comment
 
-
     return logger

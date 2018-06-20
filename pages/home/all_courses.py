@@ -9,12 +9,11 @@ class AllCourses(SeleniumDriver):
     # Locator
     _all_courses = "//div[@id='navbar']//ul[@class='nav navbar-nav navbar-right']//a[@href='/courses']"  # Xpath
     _course = "//div[@class='course-listing-title'][contains(text(),'Selenium WebDriver With Java')]"  # Xpath
-    _verify_course = "//div[@class='view-school']/div/div[1]/div[@class='course-top-row has-hero-image']//h1[" \
-                     "@class='course-title']"  # Xpath
+    _verify_course = "//div[@class='view-school']/div/div[1]/div[@class='course-top-row has-hero-image']//h1[@class='course-title']"  # Xpath
     _verify_all_course = "//input[@id='search-courses']"  # By Xpath
 
-    def __init__(self, driver, className):
-        super(type(className), className).__init__(driver)
+    def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def clickAllCourseLink(self):
