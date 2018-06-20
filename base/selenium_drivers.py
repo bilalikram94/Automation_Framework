@@ -122,12 +122,13 @@ class SeleniumDriver():
         Takes screenshot of the current open web page
         """
         fileName = resultMessage + "." + str(round(time.time() * 1000)) + ".png"
-        screenshotDirectory = "C:\\Users\\Bilal.Ikram\\PycharmProjects\\Automation-Framework\\screenshots"
+        screenshotDirectory = "C:\\Users\\Bilal.Ikram\\PycharmProjects\\Automation-Framework\\screenshots\\"
         relativeFileName = screenshotDirectory + fileName
         currentDirectory = os.path.dirname(__file__)
         destinationFile = os.path.join(currentDirectory, relativeFileName)
         destinationDirectory = os.path.join(currentDirectory, screenshotDirectory)
 
+        # noinspection PyBroadException
         try:
             if not os.path.exists(destinationDirectory):
                 os.makedirs(destinationDirectory)
