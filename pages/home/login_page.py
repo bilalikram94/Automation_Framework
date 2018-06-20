@@ -18,8 +18,8 @@ class LoginPage(SeleniumDriver):
     _logout = "[href='\/sign_out']"  # By CSS Selector
     _logout_success = ".btn-primary.text-center"  # By CSS Selector
 
-    def __init__(self, driver, ClassName):
-        super(type(ClassName), ClassName).__init__(driver)
+    def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def clickLoginLink(self):
@@ -42,7 +42,6 @@ class LoginPage(SeleniumDriver):
         self.clickLoginButton()
 
     def verifyLoginSuccessful(self):
-        time.sleep(3)
         result = self.isElementPresent(self._login_success, locatorType="xpath")
         return result
 

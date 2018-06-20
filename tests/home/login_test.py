@@ -1,16 +1,17 @@
 import time
-from pages.home.login_page import LoginPage
-from utilities.teststatus import TestStatus
-import unittest
 import pytest
+import unittest
+from utilities.teststatus import Status
+from pages.home.login_page import LoginPage
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
 class LoginTests(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
-        self.lp = LoginPage(self.driver, LoginPage)
-        self.ts = TestStatus(self.driver, TestStatus)
+        self.lp = LoginPage(self.driver)
+        self.ts = Status(self.driver)
+
         """
         Need to verify two verification points
         1 fails, code will not go to the next verification point
@@ -23,7 +24,7 @@ class LoginTests(unittest.TestCase):
         result1 = self.lp.verifyTitle()
         self.ts.mark(result1, "Title is incorrect")
         result2 = self.lp.verifyLoginSuccessful()
-        self.ts.markFinal("test_ValidLogin", result2, "Login was not successful")
+        self.ts.markFinal("test_validLogin", result2, "Login was not successful")
 
     @pytest.mark.run(order=1)
     def test_invalidLogin(self):
@@ -36,4 +37,4 @@ class LoginTests(unittest.TestCase):
     def test_validlogout(self):
         self.lp.Logout()
         result = self.lp.verifySuccessfulLogout()
-        self.ts.markFinal("test_validLogout", result, "Logout was not successful")
+        self.ts.markFinal("test_validLogout", result, "Logout unsuccessful")

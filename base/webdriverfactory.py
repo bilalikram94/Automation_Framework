@@ -13,7 +13,6 @@ Is called in conftest file instead of Selenium Webdriver
 
 
 from selenium import webdriver
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 
 class WebDriverFactory:
@@ -48,12 +47,11 @@ class WebDriverFactory:
 
             driver = webdriver.Ie()
         elif self.browser == "firefox":
-            binary = FirefoxBinary("/usr/lib/firefox")
-            fp = webdriver.FirefoxProfile()
-            driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
+            driver = webdriver.Firefox()
 
         else:
-            driver = webdriver.Chrome("/usr/bin/chromedriver")
+            driver = webdriver.Chrome("C:\\Users\\Bilal.Ikram\\PycharmProjects\\firstSeleniumTest\\venv\\selenium"
+                                      "\\webdriver\\chromedriver.exe")
         # Setting Driver Implicit Time Out for an Element
 
         driver.implicitly_wait(3)

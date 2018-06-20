@@ -11,16 +11,17 @@ import utilities.custom_logger as cl
 import logging
 
 
-class TestStatus(SeleniumDriver):
+class Status(SeleniumDriver):
     log = cl.customLogger(logging.INFO)
-    resultList = list()
-    """
-            Inits Checkpoint Class
 
-            """
-    def __init__(self, driver, ClassName):
-        super(type(ClassName), ClassName).__init__(driver)
-        self.resultList = list()
+    def __init__(self, driver):
+        """
+        Inits Checkpoint Class
+
+        """
+        super(Status, self).__init__(driver)
+
+        self.resultList = []
 
     def setResult(self, result, resultMessage):
         try:
@@ -30,7 +31,7 @@ class TestStatus(SeleniumDriver):
                     self.log.info("### VERIFICATION SUCCESSFUL :: + " + resultMessage)
                 else:
                     self.resultList.append("FAIL")
-                    self.log.error("### VERIFICATION FAILED :: + " + resultMessage)
+                    self.log.info("### VERIFICATION FAILED :: + " + resultMessage)
 
 
             else:
@@ -56,10 +57,10 @@ class TestStatus(SeleniumDriver):
 
         if "FAIL" in self.resultList:
             self.log.error(testName + "### Test Failed")
-            self.resultList = []
+            self.resultList.clear()
             assert True == False
 
         else:
             self.log.info(testName + "### Test Successful")
-            self.resultList = []
+            self.resultList.clear()
             assert True == True

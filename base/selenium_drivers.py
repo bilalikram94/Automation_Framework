@@ -7,7 +7,7 @@ import utilities.custom_logger as cl
 import logging
 
 
-class SeleniumDriver:
+class SeleniumDriver():
     log = cl.customLogger(logging.DEBUG)
 
     def __init__(self, driver):
