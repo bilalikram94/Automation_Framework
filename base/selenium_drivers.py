@@ -10,6 +10,7 @@ import os
 
 
 class SeleniumDriver:
+
     log = cl.customLogger(logging.DEBUG)
 
     def __init__(self, driver):
