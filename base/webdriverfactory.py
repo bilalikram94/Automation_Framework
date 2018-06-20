@@ -50,7 +50,8 @@ class WebDriverFactory:
             driver = webdriver.Firefox()
 
         else:
-            driver = webdriver.Chrome("/usr/bin/chromedriver")
+            driver = webdriver.Chrome("C:\\Users\\Bilal.Ikram\\PycharmProjects\\firstSeleniumTest\\venv\\selenium"
+                                      "\\webdriver\\chromedriver.exe")
         # Setting Driver Implicit Time Out for an Element
 
         driver.implicitly_wait(3)

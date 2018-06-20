@@ -20,17 +20,17 @@ class SeleniumDriver:
 
     def getByType(self, locatorType):
         locatorType = locatorType.lower()
-        if locatorType=="id":
+        if locatorType == "id":
             return By.ID
-        elif locatorType=="name":
+        elif locatorType == "name":
             return By.NAME
-        elif locatorType=="xpath":
+        elif locatorType == "xpath":
             return By.XPATH
-        elif locatorType=="css":
+        elif locatorType == "css":
             return By.CSS_SELECTOR
-        elif locatorType=="class":
+        elif locatorType == "class":
             return By.CLASS_NAME
-        elif locatorType=="link":
+        elif locatorType == "link":
             return By.LINK_TEXT
         else:
             self.log.info("Locator type " + locatorType +
