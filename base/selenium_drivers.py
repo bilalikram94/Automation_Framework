@@ -50,7 +50,7 @@ class SeleniumDriver:
                           " and  locatorType: " + locatorType)
         return element
 
-    def getElementList(self, locator, locatorType="id"):
+    def getElementsList(self, locator, locatorType="id"):
         """
         Get list of elements
         """
@@ -117,8 +117,7 @@ class SeleniumDriver:
             self.log.info("Element not found")
             return False
 
-    def waitForElement(self, locator, locatorType="id",
-                       timeout=10, pollFrequency=0.5):
+    def waitForElement(self, locator, locatorType="id", timeout=10, pollFrequency=0.5):
         element = None
         try:
             byType = self.getByType(locatorType)
