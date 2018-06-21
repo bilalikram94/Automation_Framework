@@ -57,7 +57,7 @@ class LoginPage(SeleniumDriver):
 
     def verifyTitle(self):
 
-        if "Osama Anwar" in self.getTitle():
+        if "Let's Kode It" in self.getTitle():
             return True
         else:
             return False
