@@ -13,8 +13,8 @@ import random, string
 import utilities.custom_logger as cl
 import logging
 
-class Util(object):
 
+class Util(object):
     log = cl.customLogger(logging.INFO)
 
     def sleep(self, sec, info=""):
@@ -105,6 +105,7 @@ class Util(object):
         """
         length = len(expectedList)
         for i in range(0, length):
-            if expectedList[i] not in actualList: return False
+            if expectedList[i] not in actualList:
+                return False
             else:
                 return True

@@ -1,10 +1,10 @@
-from base.selenium_drivers import SeleniumDriver
+from base.basepage import BasePage
 import utilities.custom_logger as cl
 import logging
 import time
 
 
-class LoginPage(SeleniumDriver):
+class LoginPage(BasePage):
     log = cl.customLogger(logging.DEBUG)
 
     # Locators
@@ -56,11 +56,7 @@ class LoginPage(SeleniumDriver):
         return result
 
     def verifyTitle(self):
-
-        if "Let's Kode It" in self.getTitle():
-            return True
-        else:
-            return False
+        return self.verifyPageTitle("Google")
 
     def clickUserSettings(self):
         self.elementClick(self._user_settings, locatorType="xpath")
