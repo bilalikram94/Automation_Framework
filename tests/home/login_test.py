@@ -1,4 +1,3 @@
-
 import time
 import pytest
 import unittest
@@ -7,7 +6,7 @@ from pages.home.login_page import LoginPage
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
-class LoginTests(unittest.TestCase):
+class LoginTests(unittest.TestCase, LoginPage):
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
         self.lp = LoginPage(self.driver)
@@ -19,23 +18,35 @@ class LoginTests(unittest.TestCase):
         If assert fails, it stops current test execution and moves to the next test method.
         """
 
-    @pytest.mark.run(order=2)
-    def test_validLogin(self):
-        self.lp.login("test@email.com", "abcabc")
-        result1 = self.lp.verifyTitle()
-        self.ts.mark(result1, "Title Verified")
-        result2 = self.lp.verifyLoginSuccessful()
-        self.ts.markFinal("test_validLogin", result2, "Login was successful")
-
     @pytest.mark.run(order=1)
     def test_invalidLogin(self):
-        time.sleep(3)
-        self.lp.login("test@email.com", "abcabcabc")
-        result = self.lp.verifyLoginFailed()
+
+        self.lp.login("", "")
+        result = self.lp.verifyLoginFailed1()
+        self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
+
+    @pytest.mark.run(order=2)
+    def test_invalidLogin2(self):
+        # self.util.sleep(2)
+        self.lp.login("admin", "")
+        result = self.lp.verifyLoginFailed1()
         self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
 
     @pytest.mark.run(order=3)
+    def test_invalidLogin3(self):
+        # self.util.sleep(2)
+        self.lp.login("", "admin123")
+        result = self.lp.verifyLoginFailed()
+        self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
+
+    @pytest.mark.run(order=4)
+    def test_validLogin(self):
+        self.lp.login("networks@cubixlabs.com", "admin.password")
+        result = self.lp.verifyLogin()
+        self.ts.markFinal("test_validLogin", result, "Login was Successful")
+
+    @pytest.mark.run(order=5)
     def test_validlogout(self):
-        self.lp.Logout()
-        result = self.lp.verifySuccessfulLogout()
+        self.lp.logout()
+        result = self.lp.verifyLogoutSuccess()
         self.ts.markFinal("test_validLogout", result, "Logout successful")

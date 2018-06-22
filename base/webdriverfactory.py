@@ -40,7 +40,7 @@ class WebDriverFactory:
             'WebDriver Instance'
         """
 
-        baseURL = "https://letskodeit.com/"
+        baseURL = "http://sandbox2.cubix.co/staging/portal/dashboard"
         if self.browser == "iexplorer":
 
             # Set IE Driver
