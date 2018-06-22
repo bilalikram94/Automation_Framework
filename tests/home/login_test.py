@@ -41,7 +41,7 @@ class LoginTests(unittest.TestCase, LoginPage):
 
     @pytest.mark.run(order=4)
     def test_validLogin(self):
-        self.lp.login("networks@cubixlabs.com", "admin.password")
+        self.lp.login("", "")
         result = self.lp.verifyLogin()
         self.ts.markFinal("test_validLogin", result, "Login was Successful")
 
