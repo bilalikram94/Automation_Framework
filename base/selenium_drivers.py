@@ -73,9 +73,9 @@ class SeleniumDriver:
             if locator:
                 element = self.getElement(locator, locatorType)
             element.click()
-            self.log.error("Clicked on element with locator: " + locator + "and locatorType: " + locatorType)
+            self.log.info("Clicked on element with locator: " + locator + "and locatorType: " + locatorType)
         except:
-            self.log.info("Cannot click on the element with locator: " + locator + " locatorType: " + locatorType)
+            self.log.error("Cannot click on the element with locator: " + locator + " locatorType: " + locatorType)
             print_stack()
 
     def sendKeys(self, data, locator, locatorType="id", element=None):
@@ -158,29 +158,27 @@ class SeleniumDriver:
 
     def getText(self, locator="", locatorType="id", element=None, info=""):
         """
-        New Method
-        Get Text on an element
-        Either provide element or combination of locator and locatorType
+        NEW METHOD
+        Get 'Text' on an element
+        Either provide element or a combination of locator and locatorType
         """
         try:
-            if locator:
+            if locator:  # This means if locator is not empty
                 self.log.debug("In locator condition")
-                element = element.getElement(locator, locatorType)
-            self.log.debug("Before Finding Text")
+                element = self.getElement(locator, locatorType)
+            self.log.debug("Before finding text")
             text = element.text
-            self.log.debug("after Finding Text" + str(len(text)))
+            self.log.debug("After finding element, size is: " + str(len(text)))
             if len(text) == 0:
-                text = element.get_attribute("inner text")
+                text = element.get_attribute("innerText")
             if len(text) != 0:
-                self.log.info("Getting text on element ::" + info)
-                self.log.info("The Text is ::'" + text + "'")
+                self.log.info("Getting text on element :: " + info)
+                self.log.info("The text is :: '" + text + "'")
                 text = text.strip()
-
         except:
-            self.log.error("###Failed To Get Text On Element !!!" + info)
+            self.log.error("Failed to get text on element " + info)
             print_stack()
             text = None
-
         return text
 
     def isElementDisplayed(self, locator="", locatorType="id", element=None):
