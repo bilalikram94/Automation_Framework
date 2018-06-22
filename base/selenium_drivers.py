@@ -158,27 +158,30 @@ class SeleniumDriver:
 
     def getText(self, locator="", locatorType="id", element=None, info=""):
         """
-        NEW METHOD
-        Get 'Text' on an element
-        Either provide element or a combination of locator and locatorType
+        New Method
+        Get Text on an element
+        Either provide element or combination of locator and locatorType
         """
         try:
-            if locator:  # This means if locator is not empty
+            if locator:
                 self.log.debug("In locator condition")
                 element = self.getElement(locator, locatorType)
-            self.log.debug("Before finding text")
+            self.log.debug("Before Finding Text")
             text = element.text
-            self.log.debug("After finding element, size is: " + str(len(text)))
+
+            self.log.debug("after Finding Text" + str(len(text)))
             if len(text) == 0:
-                text = element.get_attribute("innerText")
+                text = self.element.get_attribute("inner text")
             if len(text) != 0:
-                self.log.info("Getting text on element :: " + info)
-                self.log.info("The text is :: '" + text + "'")
+                self.log.info("Getting text on element ::" + info)
+                self.log.info("The Text is ::'" + text + "'")
                 text = text.strip()
+
         except:
-            self.log.error("Failed to get text on element " + info)
+            self.log.error("###Failed To Get Text On Element !!!" + info)
             print_stack()
             text = None
+
         return text
 
     def isElementDisplayed(self, locator="", locatorType="id", element=None):
