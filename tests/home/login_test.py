@@ -1,4 +1,3 @@
-import time
 import pytest
 import unittest
 from utilities.teststatus import Status
