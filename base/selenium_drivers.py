@@ -140,7 +140,7 @@ class SeleniumDriver:
         Takes screenshot of the current web page
         """
         fileName = resultMessage + "." + str(round(time.time() * 1000)) + ".png"
-        screenshotDirectory = "/home/bilalikram/PycharmProjects/Automation_Framework/screenshots/"
+        screenshotDirectory = os.getcwd() + "/screenshots/"
         relativeFileName = screenshotDirectory + fileName
         currentDirectory = os.path.dirname(__file__)
         destinationFile = os.path.join(currentDirectory, relativeFileName)

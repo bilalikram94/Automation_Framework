@@ -28,23 +28,11 @@ class LoginTests(unittest.TestCase, LoginPage):
         result = self.lp.verifyLoginFailed1()
         self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
 
-    #@pytest.mark.run(order=2)
-    #def test_invalidLogin2(self):
-    #    # self.util.sleep(2)
-    #    self.lp.login("admin", "")
-    #    result = self.lp.verifyLoginFailed1()
-    #    self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
-
-    #@pytest.mark.run(order=3)
-    #def test_invalidLogin3(self):
-    #    # self.util.sleep(2)
-    #    self.lp.login("", "admin123")
-    #    result = self.lp.verifyLoginFailed()
-    #    self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
-
     @pytest.mark.run(order=2)
-    def test_validLogin(self):
-        self.lp.login("networks@cubixlabs.com", "admin.password")
+    @data(("networks@cubixlabs.com", "admin.password"))
+    @unpack
+    def test_validLogin(self, email, password):
+        self.lp.login(email, password)
         result = self.lp.verifyLogin()
         self.ts.markFinal("test_validLogin", result, "Login was Successful")
 
