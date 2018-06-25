@@ -54,9 +54,7 @@ class LoginPage(BasePage):
 
     def verifyLogoutSuccess(self):
         time.sleep(2)
-        getText = self.getText(self._login_button, locatorType='xpath')
-        # getText1 = str(getText)
-        result = self.util.verifyTextContains("Email", getText)
+        result = self.isElementPresent(self._login_button, locatorType='xpath')
         return result
 
     def login(self, email='', password=''):
