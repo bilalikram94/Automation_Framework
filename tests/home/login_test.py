@@ -4,6 +4,7 @@ import unittest
 from utilities.teststatus import Status
 from pages.home.login_page import LoginPage
 from ddt import ddt, data, unpack
+from utilities.read_data import getCVSData
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
@@ -21,7 +22,7 @@ class LoginTests(unittest.TestCase, LoginPage):
         """
 
     @pytest.mark.run(order=1)
-    @data(("", ""), ("admin", ""), ("", "admin123"), ("admin", "admin123"))
+    @data(*getCVSData("/home/bilalikram/PycharmProjects/Automation_Framework/logincredentials.csv"))
     @unpack
     def test_invalidLogin(self, email, password):
         self.lp.login(email, password)
