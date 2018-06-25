@@ -29,7 +29,7 @@ class LoginTests(unittest.TestCase, LoginPage):
         self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")
 
     @pytest.mark.run(order=2)
-    @data(("networks@cubixlabs.com", "admin.password"))
+    @data(*getCVSData("/home/bilalikram/PycharmProjects/Automation_Framework/validlogin.csv"))
     @unpack
     def test_validLogin(self, email, password):
         self.lp.login(email, password)

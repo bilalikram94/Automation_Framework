@@ -2,6 +2,7 @@ from base.basepage import BasePage
 import utilities.custom_logger as cl
 import logging
 import time
+from utilities.util import Util
 
 
 class LoginPage(BasePage):
@@ -16,7 +17,8 @@ class LoginPage(BasePage):
     _failed_login = ".alert-dismissible"  # By CSS Selector
     _user_image = ".user-image"  # By CSS Selector
     _logout_button = "Logout"  # By LinkText
-    _logout_success_text = ".alert-dismissible" # By CSS Selector
+    _logout_success_text = ".alert-dismissible"  # By CSS Selector
+    _forget_password = "Forget Password?"  # By Link Text
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -54,7 +56,8 @@ class LoginPage(BasePage):
 
     def verifyLogoutSuccess(self):
         time.sleep(2)
-        result = self.isElementPresent(self._login_button, locatorType='xpath')
+        text = self.getText(self._forget_password, locatorType='link')
+        result = self.util.verifyTextContains("Forget Password?", text)
         return result
 
     def login(self, email='', password=''):
@@ -65,4 +68,4 @@ class LoginPage(BasePage):
     def logout(self):
         self.userImage()
         self.logoutButton()
-        # self.verifyLogoutSuccess()
+

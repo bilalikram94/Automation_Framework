@@ -171,7 +171,7 @@ class SeleniumDriver:
 
             self.log.debug("after Finding Text" + str(len(text)))
             if len(text) == 0:
-                text = self.element.get_attribute("inner text")
+                text = element.get_attribute("inner text")
             if len(text) != 0:
                 self.log.info("Getting text on element ::" + info)
                 self.log.info("The Text is ::'" + text + "'")
