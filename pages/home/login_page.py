@@ -2,7 +2,6 @@ from base.basepage import BasePage
 import utilities.custom_logger as cl
 import logging
 import time
-from utilities.util import Util
 
 
 class LoginPage(BasePage):
