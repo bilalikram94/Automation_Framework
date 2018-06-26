@@ -4,6 +4,10 @@ from utilities.teststatus import Status
 from pages.home.login_page import LoginPage
 from ddt import ddt, data, unpack
 from utilities.read_data import getCVSData
+"""
+when using pytest the test cases must start with test_("testname) and the test must start with small 't' otherwise 
+the test will not be collected 
+"""
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")

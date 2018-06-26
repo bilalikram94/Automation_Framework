@@ -2,6 +2,10 @@ import pytest
 import unittest
 from utilities.teststatus import Status
 from pages.sidemenu.side_menu import SideMenu
+"""
+when using pytest the test cases must start with test_("testname) and the test must start with small 't' otherwise 
+the test will not be collected 
+"""
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
