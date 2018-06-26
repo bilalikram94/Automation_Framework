@@ -251,3 +251,17 @@ class SeleniumDriver:
         except:
             self.log.error("Cannot click on the element with locator: " + locator + " locatorType: " + locatorType)
             print_stack()
+            return False
+
+    def scrollIntoView(self, locator, locatorType="id", element=None):
+        try:
+            if locator:
+                element = self.getElement(locator, locatorType)
+            if element is not None:
+                self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+                self.log.info("Element Scrolled into View with locator: " + locator + "locatorType: " + locatorType)
+                return True
+        except:
+            self.log.error("### Element NOT Scrolled into View with locator: " + locator + "locatorType: " + locatorType)
+            print_stack()
+            return False
