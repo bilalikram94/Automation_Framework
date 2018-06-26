@@ -281,7 +281,7 @@ class SeleniumDriver:
             if fromlocator:
                 fromlocator = self.getElement(fromlocator, fromlocatorType)
                 tolocator = self.getElement(tolocator, tolocatorType)
-            self.actions.click_and_hold(fromlocator).move_to_element(fromlocator).release().perform()
+            self.actions.click_and_hold(fromlocator).move_to_element(tolocator).release().perform()
             self.log.info("Item dragged from:" + fromlocator + "FromLocator: " + fromlocatorType)
             self.log.info("Item dragged to:" + fromlocator + "ToLocator:" + tolocatorType)
             return True
