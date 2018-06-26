@@ -332,9 +332,6 @@ class SeleniumDriver:
             return True
 
         except:
-            self.log.error("Can NOT find Element with locator: " + locator + "locatorType: " + locatorType)
-            self.log.error("Can't select value: " + val)
+            self.log.error("### Can NOT find Element with locator: " + locator + "locatorType: " + locatorType)
+            self.log.error("### Can't select value: " + val)
             return False
-
-
-
