@@ -283,12 +283,12 @@ class SeleniumDriver:
                 tolocator = self.getElement(tolocator, tolocatorType)
             self.actions.click_and_hold(fromlocator).move_to_element(tolocator).release().perform()
             self.log.info("Item dragged from:" + fromlocator + "FromLocator: " + fromlocatorType)
-            self.log.info("Item dragged to:" + fromlocator + "ToLocator:" + tolocatorType)
+            self.log.info("Item dragged to:" + tolocator + "ToLocator:" + tolocatorType)
             return True
 
         except:
             self.log.error("Element not found with locator: " + fromlocator + "locatorType: " + fromlocatorType)
-            self.log.error("Element not found with locator: " + fromlocator + "locatorType: " + tolocatorType)
+            self.log.error("Element not found with locator: " + tolocator + "locatorType: " + tolocatorType)
             print_stack()
             return False
 
