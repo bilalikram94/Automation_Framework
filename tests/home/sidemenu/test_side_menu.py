@@ -12,7 +12,7 @@ class TestSideMenu(unittest.TestCase):
         self.ts = Status(self.driver)
 
     @pytest.mark.run(order=1)
-    def Test_SideMenu(self):
+    def test_SideMenu(self):
         self.sm.clickSideMenu()
         result = self.sm.verifySideMenu()
         self.ts.mark(result, "Verify Attendence")

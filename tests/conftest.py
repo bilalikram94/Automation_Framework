@@ -6,7 +6,7 @@ from utilities.read_data import getCVSData
 
 
 @pytest.fixture()
-@ddt
+
 def setUp():
     print("Running method level setUp")
     yield
@@ -14,14 +14,12 @@ def setUp():
 
 
 @pytest.fixture(scope="class")
-@data(*getCVSData("/home/bilalikram/PycharmProjects/Automation_Framework/validlogin.csv"))
-@unpack
-def oneTimeSetUp(request, browser, email, password):
+def oneTimeSetUp(request, browser,):
     print("Running one time setUp")
     wdf = WebDriverFactory(browser)
     driver = wdf.getWebDriverInstance()
     lp = LoginPage(driver)
-    lp.login(email, password)
+    lp.login("networks@cubixlabs.com", "admin.password")
 
     if request.cls is not None:
         request.cls.driver = driver
