@@ -267,7 +267,21 @@ class SeleniumDriver:
                 self.log.info("Element Scrolled into View with locator: " + locator + "locatorType: " + locatorType)
                 return True
         except:
-            self.log.error("### Element NOT Scrolled into View with locator: " + locator + "locatorType: " + locatorType)
+            self.log.error(
+                "### Element NOT Scrolled into View with locator: " + locator + "locatorType: " + locatorType)
             print_stack()
             return False
 
+#  def dragDrop(self,locator, locatorType="id", element=None):
+
+    def windowSize(self):
+        try:
+            height = self.driver.execute_script("return window.innerHeight;")
+            width = self.driver.execute_script("return window.innerWidth;")
+            self.log.info("Height of Current Window is: " + height + "Width of Current Window is: " + width)
+            return True
+
+        except:
+            self.log.error("###Could not measure Height and Width !!!")
+            print_stack()
+            return False
