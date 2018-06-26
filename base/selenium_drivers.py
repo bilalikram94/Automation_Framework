@@ -3,6 +3,7 @@ from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
+from selenium.webdriver.common.action_chains import ActionChains
 import utilities.custom_logger as cl
 import logging
 import time
@@ -14,6 +15,7 @@ class SeleniumDriver:
 
     def __init__(self, driver):
         self.driver = driver
+        self.actions = ActionChains(driver)
 
     def getTitle(self):
         return self.driver.title
@@ -215,3 +217,37 @@ class SeleniumDriver:
         if direction == "down":
             # Scroll Down
             self.driver.execute_script("window.scrollBy(0,1000);")
+
+    def mouseHover(self, locator, locatorType="id", element=None):
+        """
+        NEW METHOD
+        Mouse Hover on an element
+        either provide element or a combination of locator and locatorType
+        """
+        try:
+            if locator:
+                element = self.getElement(locator, locatorType)
+            if element is not None:
+                self.actions.move_to_element(element).perform()
+                self.log.info("Element Found by locator:" + locator + " and locatorType:" + locatorType)
+                return True
+        except:
+            self.log.error("Cannot find element with locator: " + locator + " locatorType: " + locatorType)
+            print_stack()
+
+    def mouseClick(self, locator, locatorType="id", element=None):
+        """
+                NEW METHOD
+                Mouse Hover on an element and click
+                either provide element or a combination of locator and locatorType
+        """
+        try:
+            if locator:
+                element = self.getElement(locator, locatorType)
+            if element is not None:
+                self.actions.move_to_element(element).click().perform()
+                self.log.info("Clicked on element with locator: " + locator + "and locatorType: " + locatorType)
+                return True
+        except:
+            self.log.error("Cannot click on the element with locator: " + locator + " locatorType: " + locatorType)
+            print_stack()
