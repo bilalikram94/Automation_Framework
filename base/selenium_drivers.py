@@ -272,7 +272,26 @@ class SeleniumDriver:
             print_stack()
             return False
 
-#  def dragDrop(self,locator, locatorType="id", element=None):
+    def dragDrop(self, fromlocator, fromlocatorType="id", tolocator, tolocatorType="id"):
+        """
+        Accepts four parameters fromlocator, fromlocatorType, tolocator, tolocatorType
+        provide two combinations of locator and locatorType
+        """
+        try:
+            if fromlocator:
+                fromlocator = self.getElement(fromlocator, fromlocatorType)
+                tolocator = self.getElement(tolocator, tolocatorType)
+            self.actions.click_and_hold(fromlocator).move_to_element(fromlocator).release().perform()
+            self.log.info("Item dragged from:" + fromlocator + "FromLocator: " + fromlocatorType)
+            self.log.info("Item dragged to:" + fromlocator + "ToLocator:" + tolocatorType)
+            return True
+
+        except:
+            self.log.error("Element not found with locator: " + fromlocator + "locatorType: " + fromlocatorType)
+            self.log.error("Element not found with locator: " + fromlocator + "locatorType: " + tolocatorType)
+            print_stack()
+            return False
+
 
     def windowSize(self):
         try:
