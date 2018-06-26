@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
 import utilities.custom_logger as cl
 import logging
 import time
@@ -272,10 +273,13 @@ class SeleniumDriver:
             print_stack()
             return False
 
-    def dragDrop(self, fromlocator, fromlocatorType="id", tolocator, tolocatorType="id"):
+    def dragDrop(self, fromlocator, tolocator, fromlocatorType="id", tolocatorType="id"):
         """
         Accepts four parameters fromlocator, fromlocatorType, tolocator, tolocatorType
-        provide two combinations of locator and locatorType
+        provide two combinations of locators and locatorTypes
+
+        example:
+            self.dragDrop(fromlocator,tolocator,fromlocatorType,tolocatorType)
         """
         try:
             if fromlocator:
@@ -292,7 +296,6 @@ class SeleniumDriver:
             print_stack()
             return False
 
-
     def windowSize(self):
         try:
             height = self.driver.execute_script("return window.innerHeight;")
@@ -304,3 +307,34 @@ class SeleniumDriver:
             self.log.error("###Could not measure Height and Width !!!")
             print_stack()
             return False
+
+    def dropDownList(self, locator, locatorType="id", val="index", element=None):
+        """
+        Accepts three parameters locator, locatorType and val
+        selects from drop down list
+        by default val is set to 'index'
+        Example:
+             self.dropDownList(locator, locatorType, val="value")
+        """
+        try:
+            sel = Select(element)
+            if locator:
+                element = self.getElement(locator, locatorType)
+            if element is not None:
+                sel.select_by_index(val)
+                self.log.info("Element selected from list by Index: " + val)
+            elif val == "value":
+                self.log.info("Element selected from list by Value: " + val)
+                return sel.select_by_value(val)
+            else:
+                sel.select_by_visible_text(val)
+                self.log.info("Element selected from list by Visible Text" + val)
+            return True
+
+        except:
+            self.log.error("Can NOT find Element with locator: " + locator + "locatorType: " + locatorType)
+            self.log.error("Can't select value: " + val)
+            return False
+
+
+
