@@ -254,6 +254,11 @@ class SeleniumDriver:
             return False
 
     def scrollIntoView(self, locator, locatorType="id", element=None):
+        """
+                NEW METHOD
+                Scrolls Element into View
+                either provide element or a combination of locator and locatorType
+        """
         try:
             if locator:
                 element = self.getElement(locator, locatorType)
@@ -265,3 +270,4 @@ class SeleniumDriver:
             self.log.error("### Element NOT Scrolled into View with locator: " + locator + "locatorType: " + locatorType)
             print_stack()
             return False
+
