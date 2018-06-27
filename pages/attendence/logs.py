@@ -21,14 +21,6 @@ class Logs(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-    #def clickSideMenu(self):
-    #    self.elementClick(self._side_menu, locatorType='xpath')
-    #    self.util.sleep(3)
-
-    #def clickAttendence(self):
-    #    self.elementClick(self._attendence, locatorType='link')
-    #    time.sleep(2)
-
     def verifyLogs(self):
         result = self.isElementPresent(self._logs, locatorType='link')
         return result
