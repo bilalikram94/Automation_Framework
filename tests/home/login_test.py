@@ -28,6 +28,7 @@ class LoginTests(unittest.TestCase, LoginPage):
     @data(*getCVSData("/home/bilalikram/PycharmProjects/Automation_Framework/logincredentials.csv"))
     @unpack
     def test_invalidLogin(self, email, password):
+        self.lp.logout()
         self.lp.login(email, password)
         result = self.lp.verifyLoginFailed1()
         self.ts.markFinal("test_invalidLogin", result, "Login wasn't successful")

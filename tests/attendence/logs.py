@@ -6,7 +6,7 @@ from pages.home.navigation import Navigation
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
-class TestSideMenu(unittest.TestCase):
+class TestLogs(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
         self.lg = Logs(self.driver)
