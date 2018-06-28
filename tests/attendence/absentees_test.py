@@ -5,7 +5,7 @@ from pages.attendence.absentees import Absentees
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
-class TestLogs(unittest.TestCase):
+class TestAbsentees(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
         self.nav = Navigation(self.driver)
