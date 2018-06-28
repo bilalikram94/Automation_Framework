@@ -1,5 +1,6 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
+from utilities.teststatus import Status
 import logging
 
 
@@ -20,34 +21,45 @@ class Details(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.ts = Status(self.driver)
 
     def clickDetails(self):
         self.elementClick(self._details, locatorType='link')
 
     def verifyLogs(self):
         result = self.isElementPresent(self._logs, locatorType='link')
-        return result
+        self.ts.mark(result, "Verify Logs")
 
     def verifyAbsentees(self):
-        result = self.isElementPresent(self._absentees, locatorType='link')
-        return result
+        result1 = self.isElementPresent(self._absentees, locatorType='link')
+        self.ts.mark(result1, "Verify Absentees")
 
     def verifySearchBar(self):
-        result = self.isElementPresent(self._search_bar, locatorType='css')
-        return result
+        result2 = self.isElementPresent(self._search_bar, locatorType='css')
+        self.ts.mark(result2, "Verify Search Bar")
 
     def verifyMoreOptions(self):
-        result = self.isElementPresent(self._more_options, locatorType='css')
-        return result
+        result3 = self.isElementPresent(self._more_options, locatorType='css')
+        self.ts.mark(result3, "Verify More Options")
 
     def verifyAddNew(self):
-        result = self.isElementPresent(self._add_new, locatorType='css')
-        return result
+        result4 = self.isElementPresent(self._add_new, locatorType='css')
+        self.ts.mark(result4, "Verify Add New")
 
     def verifyExport(self):
-        result = self.isElementPresent(self._export, locatorType='css')
-        return result
+        result5 = self.isElementPresent(self._export, locatorType='css')
+        self.ts.mark(result5, "Verify Export")
 
     def verifyTable(self):
-        result = self.isElementPresent(self._table, locatorType='css')
-        return result
+        result6 = self.isElementPresent(self._table, locatorType='css')
+        self.ts.markFinal("Test_Details", result6, "Verify Table")
+
+    def Details(self):
+        self.clickDetails()
+        self.verifyLogs()
+        self.verifyAbsentees()
+        self.verifySearchBar()
+        self.verifyMoreOptions()
+        self.verifyExport()
+        self.verifyAddNew()
+        self.verifyTable()

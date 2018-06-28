@@ -1,5 +1,6 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
+from utilities.teststatus import Status
 import logging
 import time
 
@@ -20,32 +21,43 @@ class Logs(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.ts = Status(self.driver)
 
     def verifyLogs(self):
         result = self.isElementPresent(self._logs, locatorType='link')
-        return result
+        self.ts.mark(result, "Verify Logs")
 
     def verifyDetails(self):
-        result = self.isElementPresent(self._details, locatorType='link')
-        return result
+        result1 = self.isElementPresent(self._details, locatorType='link')
+        self.ts.mark(result1, "Verify Details")
 
     def verifyAbsentees(self):
-        result = self.isElementPresent(self._absentees, locatorType='link')
-        return result
+        result2 = self.isElementPresent(self._absentees, locatorType='link')
+        self.ts.mark(result2, "VerifyAbsentees")
 
     def verifyMoreOptions(self):
-        result = self.isElementPresent(self._more_options, locatorType='css')
-        return result
+        result3 = self.isElementPresent(self._more_options, locatorType='css')
+        self.ts.mark(result3, "Verify More Options")
 
     def verifyAddBtn(self):
-        result = self.isElementPresent(self._add_new, locatorType='css')
-        return result
+        result4 = self.isElementPresent(self._add_new, locatorType='css')
+        self.ts.mark(result4, "Verify Add Button")
 
     def verifySearchBar(self):
-        result = self.isElementPresent(self._search_bar, locatorType='css')
-        return result
+        result5 = self.isElementPresent(self._search_bar, locatorType='css')
+        self.ts.mark(result5, "Verify Search Bar")
 
     def verifyTable(self):
         time.sleep(3)
-        result = self.isElementPresent(self._table_elements, locatorType='css')
-        return result
+        result6 = self.isElementPresent(self._table_elements, locatorType='css')
+        self.ts.markFinal("Test_Logs", result6, "Verify Table")
+
+    def Logs(self):
+        self.verifyLogs()
+        self.verifyAbsentees()
+        self.verifyDetails()
+        self.verifyAbsentees()
+        self.verifyMoreOptions()
+        self.verifyAddBtn()
+        self.verifySearchBar()
+        self.verifyTable()
