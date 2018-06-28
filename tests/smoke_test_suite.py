@@ -1,7 +1,7 @@
 import unittest
 from tests.home.login_test import LoginTests
 from tests.home.sidemenu.test_side_menu import TestSideMenu
-from tests.attendence.logs import TestLogs
+from tests.attendence.logs_test import TestLogs
 
 # Get all tests from the test classes
 tc1 = unittest.TestLoader().loadTestsFromTestCase(LoginTests)
