@@ -308,7 +308,7 @@ class SeleniumDriver:
             print_stack()
             return False
 
-    def dropDownList(self, locator, locatorType="id", val="index", element=None):
+    def dropDownList(self, locator, locatorType="id", val="", element=None):
         """
         Accepts three parameters locator, locatorType and val
         selects from drop down list
