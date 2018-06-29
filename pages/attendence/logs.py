@@ -1,6 +1,7 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
 from utilities.teststatus import Status
+from pages.home.navigation import Navigation
 import logging
 import time
 
@@ -22,6 +23,7 @@ class Logs(BasePage):
         super().__init__(driver)
         self.driver = driver
         self.ts = Status(self.driver)
+        self.nav = Navigation(self.driver)
 
     def verifyLogs(self):
         result = self.isElementPresent(self._logs, locatorType='link')
@@ -53,6 +55,7 @@ class Logs(BasePage):
         self.ts.markFinal("Test_Logs", result6, "Verify Table")
 
     def Logs(self):
+        self.nav.Attendence()
         self.verifyLogs()
         self.verifyAbsentees()
         self.verifyDetails()
