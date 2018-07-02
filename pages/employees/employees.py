@@ -3,7 +3,7 @@ import utilities.custom_logger as cl
 from utilities.teststatus import Status
 from pages.home.navigation import Navigation
 import logging
-import time
+
 
 
 class Employees(BasePage):
