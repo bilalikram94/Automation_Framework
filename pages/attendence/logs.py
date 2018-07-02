@@ -18,6 +18,7 @@ class Logs(BasePage):
     _add_new = ".btn-blue.btn-action"  # By CSS
     _search_bar = "#basic_search [type]"  # By CSS
     _table_elements = "tbody [role='row']:nth-of-type(1) .sorting_1"  # By CSS
+    _drop_down = "[name='department']"  # By CSS
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -52,9 +53,14 @@ class Logs(BasePage):
     def verifyTable(self):
         time.sleep(3)
         result6 = self.isElementPresent(self._table_elements, locatorType='css')
-        self.ts.markFinal("Test_Logs", result6, "Verify Table")
+        self.ts.mark(result6, "Verify Table")
 
-    def Logs(self):
+    def verifyDropDown(self):
+        self.elementClick(self._more_options)
+        result7 = self.isElementPresent(self._drop_down, locatorType='css')
+        self.ts.markFinal("Test_Logs", result7, "Verify Drop Down")
+
+    def LogsSmoke(self):
         self.nav.Attendence()
         self.verifyLogs()
         self.verifyAbsentees()
@@ -64,3 +70,4 @@ class Logs(BasePage):
         self.verifyAddBtn()
         self.verifySearchBar()
         self.verifyTable()
+        self.verifyDropDown()

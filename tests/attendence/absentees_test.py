@@ -14,4 +14,4 @@ class TestAbsentees(unittest.TestCase):
     @pytest.mark.run(order=1)
     def test_Absentees(self):
         self.nav.Attendence()
-        self.abs.absentees()
+        self.abs.absenteesSmoke()

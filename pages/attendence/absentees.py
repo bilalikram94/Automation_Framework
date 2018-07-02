@@ -52,7 +52,7 @@ class Absentees(BasePage):
         result6 = self.isElementPresent(self._table, locatorType='css')
         self.ts.markFinal("Test_Absentees", result6, "Verify Table")
 
-    def absentees(self):
+    def absenteesSmoke(self):
         self.clickAbsentees()
         self.verifyLog()
         self.verifyDetails()

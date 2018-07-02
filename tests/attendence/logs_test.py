@@ -13,5 +13,5 @@ class TestLogs(unittest.TestCase):
 
     @pytest.mark.run(order=1)
     def test_Logs(self):
-        self.lg.Logs()
+        self.lg.LogsSmoke()
 
