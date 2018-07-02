@@ -49,6 +49,7 @@ class Absentees(BasePage):
         self.ts.mark(result4, "Verify Add Button")
 
     def verifyTable(self):
+        self.util.sleep(3)
         result6 = self.isElementPresent(self._table, locatorType='css')
         self.ts.markFinal("Test_Absentees", result6, "Verify Table")
 
@@ -59,6 +60,7 @@ class Absentees(BasePage):
         self.verifyMoreOptions()
         self.verifySearchBar()
         self.verifyAddBtn()
+        self.waitForElement(self._table, locatorType='css')
         self.verifyTable()
 
 

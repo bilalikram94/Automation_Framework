@@ -4,7 +4,7 @@ from pages.employees.employees import Employees
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
-class TestAbsentees(unittest.TestCase):
+class Employees(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
         self.emp = Employees(self.driver)
