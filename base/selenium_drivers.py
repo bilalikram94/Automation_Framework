@@ -19,7 +19,7 @@ class SeleniumDriver:
         self.actions = ActionChains(driver)
 
     def getTitle(self):
-        return self.driver.title
+        return self.driver.title.strip()
 
     def getByType(self, locatorType):
         locatorType = locatorType.lower()
@@ -91,6 +91,20 @@ class SeleniumDriver:
         except:
             self.log.error("Cannot send data on the element with locator: " + locator +
                            " locatorType: " + locatorType)
+            print_stack()
+
+    def clearField(self, locator, locatorType="id", element=None):
+        """
+        Method to clear  text field if populated
+        """
+        try:
+            if locator:
+                element = self.getElement(locator, locatorType)
+            if element is not None:
+                element.clear()
+                self.log.info("Text Field cleared by locator: " + locator + "locatorType: " + locatorType)
+        except:
+            self.log.error("Element not found by locator: " + locator + "locatorType: " + locatorType)
             print_stack()
 
     def isElementPresent(self, locator, locatorType="id", element=None):
@@ -175,6 +189,7 @@ class SeleniumDriver:
             self.log.debug("after Finding Text" + str(len(text)))
             if len(text) == 0:
                 text = element.get_attribute("inner text")
+                text = text.strip()
             if len(text) != 0:
                 self.log.info("Getting text on element ::" + info)
                 self.log.info("The Text is ::'" + text + "'")
