@@ -13,6 +13,7 @@ class Navigation(BasePage):
     _support_ticket = 'Support Tickets'  # By Link
     _time_off = 'Time Off'  # By Link
     _training = 'Training'  # By Link
+    _new_employees = "New Employee"  # By Link
 
     def Attendence(self):
         self.elementClick(self._side_menu, locatorType='xpath')
@@ -33,3 +34,7 @@ class Navigation(BasePage):
     def Training(self):
         self.elementClick(self._side_menu, locatorType="xpath")
         self.elementClick(self._training, locatorType='link')
+
+    def NewEmployee(self):
+        self.Employee()
+        self.elementClick(self._new_employees, locatorType='link')

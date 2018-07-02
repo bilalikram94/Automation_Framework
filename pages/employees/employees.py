@@ -5,7 +5,6 @@ from pages.home.navigation import Navigation
 import logging
 
 
-
 class Employees(BasePage):
     log = cl.customLogger(logging.DEBUG)
 
