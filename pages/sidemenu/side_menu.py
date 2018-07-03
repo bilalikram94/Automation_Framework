@@ -1,7 +1,6 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
 import logging
-import time
 
 
 class SideMenu(BasePage):
