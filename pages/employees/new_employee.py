@@ -1,7 +1,5 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
-from utilities.teststatus import Status
-from pages.home.navigation import Navigation
 import logging
 
 
@@ -24,55 +22,53 @@ class NewEmployee(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.ts = Status(driver)
-        self.nav = Navigation(driver)
 
     def verifyFirstName(self):
         result = self.isElementPresent(self._first_name, locatorType='xpath')
-        self.ts.mark(result, "Verify First Name")
+        self.stat.mark(result, "Verify First Name")
 
     def verifyLastName(self):
         result1 = self.isElementPresent(self._last_name, locatorType='xpath')
-        self.ts.mark(result1, "Verify Last Name")
+        self.stat.mark(result1, "Verify Last Name")
 
     def verifyEmployeeCard(self):
         result2 = self.isElementPresent(self._employee_card, locatorType='xpath')
-        self.ts.mark(result2, "Verify Employee Card")
+        self.stat.mark(result2, "Verify Employee Card")
 
     def verifyGender(self):
         result3 = self.isElementPresent(self._gender, locatorType='xpath')
-        self.ts.mark(result3, "Verify Gender")
+        self.stat.mark(result3, "Verify Gender")
 
     def verifyDateOfJoining(self):
         result4 = self.isElementPresent(self._date_of_joining, locatorType='xpath')
-        self.ts.mark(result4, "Verify Date Of Joining")
+        self.stat.mark(result4, "Verify Date Of Joining")
 
     def verifyDepartment(self):
         result5 = self.isElementPresent(self._department)
-        self.ts.mark(result5, "Verify Department")
+        self.stat.mark(result5, "Verify Department")
 
     def verifyDesignation(self):
         result6 = self.isElementPresent(self._designation)
-        self.ts.mark(result6, "Verify Designation")
+        self.stat.mark(result6, "Verify Designation")
 
     def verifyReportingPerson(self):
         result7 = self.isElementPresent(self._reporting_person, locatorType='css')
-        self.ts.mark(result7, "Verify Reporting Person")
+        self.stat.mark(result7, "Verify Reporting Person")
 
     def verifyTaxRule(self):
         result8 = self.isElementPresent(self._tax_rule, locatorType='css')
-        self.ts.mark(result8, "Verify Tax Rule")
+        self.stat.mark(result8, "Verify Tax Rule")
 
     def verifyUserRole(self):
         self.scrollIntoView(self._user_role, locatorType='css')
         self.util.sleep(3)
         result9 = self.isElementPresent(self._user_role, locatorType='css')
-        self.ts.mark(result9, "Verify User Role")
+        self.stat.mark(result9, "Verify User Role")
 
     def verifyPolicyType(self):
         self.scrollIntoView(self._policy_type, locatorType='css')
         result10 = self.isElementPresent(self._policy_type, locatorType='css')
-        self.ts.markFinal("Test New Employee", result10, "Verify Policy Type")
+        self.stat.markFinal("Test New Employee", result10, "Verify Policy Type")
 
     def NewEmployeeSmoke(self):
         self.nav.NewEmployee()
