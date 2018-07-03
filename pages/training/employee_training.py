@@ -38,76 +38,76 @@ class Training(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.ts = Status(driver)
+        self.stat = Status(driver)
         self.nav = Navigation(driver)
 
     def verifySearchbar(self):
         result = self.isElementPresent(self._search_bar, locatorType='xpath')
-        self.ts.mark(result, "Verify Search Bar")
+        self.stat.mark(result, "Verify Search Bar")
 
     def verifyTextTitlePage(self):
         text = self.getText(self._page_title, locatorType='css')
         result1 = self.util.verifyTextContains(self._text_page_title, text)
-        self.ts.mark(result1, "Verify Text Title Page")
+        self.stat.mark(result1, "Verify Text Title Page")
 
     def verifyTextEmployeeTraining(self):
         text = self.getText(self._employee_training, locatorType='link')
         result2 = self.util.verifyTextContains(self._text_employee_training, text)
-        self.ts.mark(result2, "Verify Text Employee Training")
+        self.stat.mark(result2, "Verify Text Employee Training")
 
     def verifyTextTrainingEvaluation(self):
         text = self.getText(self._training_evaluation, locatorType='link')
         result3 = self.util.verifyTextContains(self._text_training_evaluation, text)
-        self.ts.mark(result3, "Verify Text Training Evaluation")
+        self.stat.mark(result3, "Verify Text Training Evaluation")
 
     def verifyTextTrainers(self):
         text = self.getText(self._trainers, locatorType='link')
         result4 = self.util.verifyTextContains(self._text_trainers, text)
-        self.ts.mark(result4, "Verify Text Trainers")
+        self.stat.mark(result4, "Verify Text Trainers")
 
     def verifyTextTrainingEvents(self):
         text = self.getText(self._training_events, locatorType='link')
         result5 = self.util.verifyTextContains(self._text_training_events, text)
-        self.ts.mark(result5, "Verify Text Training Events")
+        self.stat.mark(result5, "Verify Text Training Events")
 
     def verifyTextTrainingNeedsAssessment(self):
         text = self.getText(self._training_needs_assessment, locatorType='link')
         result6 = self.util.verifyTextContains(self._text_training_needs_assessment, text)
-        self.ts.mark(result6, "Verify Text Training Needs Assessment")
+        self.stat.mark(result6, "Verify Text Training Needs Assessment")
 
     def verifyTextAddNewTraining(self):
         text = self.getText(self._add_new_training, locatorType='css')
         result7 = self.util.verifyTextContains(self._text_add_new_training, text)
-        self.ts.mark(result7, "Verify Text Add New Training")
+        self.stat.mark(result7, "Verify Text Add New Training")
 
     def verifyTextTrainingType(self):
         text = self.getText(self._training_type, locatorType='css')
         result8 = self.util.verifyTextContains(self._text_training_type, text)
-        self.ts.mark(result8, "Verify Text Training Type")
+        self.stat.mark(result8, "Verify Text Training Type")
 
     def verifyTextTableTitle(self):
         text = self.getText(self._table_title, locatorType='css')
         result9 = self.util.verifyTextContains(self._text_table_title, text)
-        self.ts.mark(result9, "Verify Table Title")
+        self.stat.mark(result9, "Verify Table Title")
 
     def verifyTextTrainingFrom(self):
         text = self.getText(self._training_from, locatorType='css')
         result10 = self.util.verifyTextContains(self._text_training_from, text)
-        self.ts.mark(result10, "Verify Text Training From")
+        self.stat.mark(result10, "Verify Text Training From")
 
     def verifyTextTrainingTo(self):
         text = self.getText(self._training_to, locatorType='css')
         result11 = self.util.verifyTextContains(self._text_training_to, text)
-        self.ts.mark(result11, "Verify Text Training To")
+        self.stat.mark(result11, "Verify Text Training To")
 
     def verifyTextActions(self):
         text = self.getText(self._actions, locatorType='css')
         result12 = self.util.verifyTextContains(self._text_actions, text)
-        self.ts.mark(result12, "Verify Text Actions")
+        self.stat.mark(result12, "Verify Text Actions")
 
     def verifyMoreOptions(self):
         result13 = self.isElementPresent(self._more_options, locatorType='css')
-        self.ts.markFinal("Test Employee Training", result13, "Verify More Options")
+        self.stat.markFinal("Test Employee Training", result13, "Verify More Options")
 
     def EmployeeTrainingSmoke(self):
         self.nav.Training()
