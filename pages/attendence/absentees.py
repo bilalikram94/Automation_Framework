@@ -1,6 +1,5 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
-from utilities.teststatus import Status
 import logging
 
 
@@ -21,37 +20,36 @@ class Absentees(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.ts = Status(self.driver)
 
     def clickAbsentees(self):
         self.elementClick(self._absentees, locatorType='link')
 
     def verifyLog(self):
         result = self.isElementPresent(self._logs, locatorType='link')
-        self.ts.mark(result, "Verify Logs")
+        self.stat.mark(result, "Verify Logs")
         # self.results.append(result)
 
     def verifyDetails(self):
         result1 = self.isElementPresent(self._details, locatorType='link')
-        self.ts.mark(result1, "Verify Details")
+        self.stat.mark(result1, "Verify Details")
         # self.results.append(result)
 
     def verifyMoreOptions(self):
         result2 = self.isElementPresent(self._more_options, locatorType='css')
-        self.ts.mark(result2, "Verify More Options")
+        self.stat.mark(result2, "Verify More Options")
 
     def verifySearchBar(self):
         result3 = self.isElementPresent(self._search_bar, locatorType='css')
-        self.ts.mark(result3, "Verify Search Bar")
+        self.stat.mark(result3, "Verify Search Bar")
 
     def verifyAddBtn(self):
         result4 = self.isElementPresent(self._add_new, locatorType='css')
-        self.ts.mark(result4, "Verify Add Button")
+        self.stat.mark(result4, "Verify Add Button")
 
     def verifyTable(self):
         self.util.sleep(3)
         result6 = self.isElementPresent(self._table, locatorType='css')
-        self.ts.markFinal("Test_Absentees", result6, "Verify Table")
+        self.stat.markFinal("Test_Absentees", result6, "Verify Table")
 
     def absenteesSmoke(self):
         self.clickAbsentees()

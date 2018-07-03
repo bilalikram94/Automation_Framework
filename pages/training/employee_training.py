@@ -1,7 +1,5 @@
 from base.basepage import BasePage
 import utilities.custom_logger as cl
-from utilities.teststatus import Status
-from pages.home.navigation import Navigation
 import logging
 
 
@@ -38,8 +36,6 @@ class Training(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.stat = Status(driver)
-        self.nav = Navigation(driver)
 
     def verifySearchbar(self):
         result = self.isElementPresent(self._search_bar, locatorType='xpath')
