@@ -16,3 +16,7 @@ class TestSideMenu(unittest.TestCase):
     @pytest.mark.run(order=1)
     def test_SideMenu(self):
         self.sm.SideMenuSmoke()
+
+    @pytest.mark.run(order=2)
+    def test_SideMenuText(self):
+        self.sm.SideMenuText()
