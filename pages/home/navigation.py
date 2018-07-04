@@ -1,10 +1,9 @@
-from base.basepage import BasePage
+from base.selenium_drivers import SeleniumDriver
 import utilities.custom_logger as cl
 import logging
-import time
 
 
-class Navigation(BasePage):
+class Navigation(SeleniumDriver):
     log = cl.customLogger(logging.DEBUG)
     # locators
     _side_menu = "//ul[@id='cd-primary-nav']/li[1]"  # By Xpath

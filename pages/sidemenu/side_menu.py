@@ -17,8 +17,7 @@ class SideMenu(BasePage):
     _absentee = "Absentees"  # By Link
     _more_options = ".advance-btn"  # By CSS
     _add_new = ".btn-blue.btn-action"  # By CSS
-
-    all_results = {}
+    _notifications = "//ul[@id='cd-primary-nav']/li[4]/a[@href='#']"  # By Xpath
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -28,25 +27,33 @@ class SideMenu(BasePage):
         self.elementClick(self._side_menu, locatorType='xpath')
         self.util.sleep(3)
 
-    def verifySideMenu(self):
+    def verifyAttendence(self):
         result = self.isElementPresent(self._attendence, locatorType='link')
-        return result
+        self.stat.mark(result, "Verify Attendence")
 
-    def verifySideMenu1(self):
-        result = self.isElementPresent(self._employee, locatorType='link')
-        return result
+    def verifyEmployee(self):
+        result1 = self.isElementPresent(self._employee, locatorType='link')
+        self.stat.mark(result1, "Verify Employee")
 
-    def verifySideMenu2(self):
-        result = self.isElementPresent(self._support_ticket, locatorType='link')
-        return result
+    def verifySupportTicket(self):
+        result2 = self.isElementPresent(self._support_ticket, locatorType='link')
+        self.stat.mark(result2, "Verify Support Ticket")
 
-    def verifySideMenu3(self):
-        result = self.isElementPresent(self._training, locatorType='link')
-        return result
+    def verifyTraining(self):
+        result3 = self.isElementPresent(self._training, locatorType='link')
+        self.stat.mark(result3, "Verify Training")
 
-    def verifySideMenu4(self):
-        result = self.isElementPresent(self._time_off, locatorType='link')
-        return result
+    def verifyTimeOff(self):
+        result4 = self.isElementPresent(self._time_off, locatorType='link')
+        self.stat.markFinal("Test_Side Menu", result4, "Verify Time Off")
+
+    def SideMenuSmoke(self):
+        self.clickSideMenu()
+        self.verifyAttendence()
+        self.verifyEmployee()
+        self.verifySupportTicket()
+        self.verifyTraining()
+        self.verifyTimeOff()
 
 
 

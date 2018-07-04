@@ -4,9 +4,11 @@ from pages.home.login_page import LoginPage
 from ddt import ddt, data, unpack
 from utilities.read_data import getCVSData
 
+email = None
+password = None
+
 
 @pytest.fixture()
-
 def setUp():
     print("Running method level setUp")
     yield
@@ -14,7 +16,7 @@ def setUp():
 
 
 @pytest.fixture(scope="class")
-def oneTimeSetUp(request, browser,):
+def oneTimeSetUp(request, browser):
     print("Running one time setUp")
     wdf = WebDriverFactory(browser)
     driver = wdf.getWebDriverInstance()

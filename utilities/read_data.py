@@ -1,5 +1,6 @@
 import csv
 
+
 def getCVSData(fileName):
     # Create an empty list to store rows
     rows = []

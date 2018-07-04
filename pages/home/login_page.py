@@ -31,7 +31,6 @@ class LoginPage(BasePage):
 
     def clickLoginBtn(self):
         self.elementClick(self._login_button, locatorType='xpath')
-        self.util.sleep(3)
 
     def verifyLogin(self):
         result = self.isElementPresent(self._login_success, locatorType='css')
@@ -67,4 +66,3 @@ class LoginPage(BasePage):
     def logout(self):
         self.userImage()
         self.logoutButton()
-
