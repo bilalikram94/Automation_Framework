@@ -1,6 +1,6 @@
 import unittest
 from tests.home.login_test import LoginTests
-from tests.home.sidemenu.test_side_menu import TestSideMenu
+from tests.sidemenu.test_side_menu import TestSideMenu
 from tests.attendence.logs_test import TestLogs
 from tests.attendence.details_test import TestDetails
 from tests.attendence.absentees_test import TestAbsentees
