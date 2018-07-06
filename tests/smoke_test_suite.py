@@ -5,7 +5,7 @@ from tests.attendence.logs_test import TestLogs
 from tests.attendence.details_test import TestDetails
 from tests.attendence.absentees_test import TestAbsentees
 from tests.employees.employee_test import TestEmployees
-from tests.employees.new_employee import TestNewEmployee
+from tests.employees.new_employee_test import TestNewEmployee
 from tests.support_ticket.support_ticket_test import TestSupportTicket
 from tests.training.employee_training_test import TestEmployeeTraining
 

@@ -36,82 +36,93 @@ class Absentees(BasePage):
 
     def verifyLog(self):
         result = self.isElementPresent(self._logs, locatorType='link')
-        self.stat.mark(result, "Verify Logs")
-        # self.results.append(result)
+        return result
 
     def verifyDetails(self):
-        result1 = self.isElementPresent(self._details, locatorType='link')
-        self.stat.mark(result1, "Verify Details")
-        # self.results.append(result)
+        result = self.isElementPresent(self._details, locatorType='link')
+        return result
 
     def verifyMoreOptions(self):
-        result2 = self.isElementPresent(self._more_options, locatorType='css')
-        self.stat.mark(result2, "Verify More Options")
+        result = self.isElementPresent(self._more_options, locatorType='css')
+        return result
 
     def verifySearchBar(self):
-        result3 = self.isElementPresent(self._search_bar, locatorType='css')
-        self.stat.mark(result3, "Verify Search Bar")
+        result = self.isElementPresent(self._search_bar, locatorType='css')
+        return result
 
     def verifyAddBtn(self):
-        result4 = self.isElementPresent(self._add_new, locatorType='css')
-        self.stat.mark(result4, "Verify Add Button")
+        result = self.isElementPresent(self._add_new, locatorType='css')
+        return result
 
     def verifyTable(self):
         self.util.sleep(3)
-        result6 = self.isElementPresent(self._table, locatorType='css')
-        self.stat.markFinal("Test_Absentees", result6, "Verify Table")
+        result = self.isElementPresent(self._table, locatorType='css')
+        return result
 
     def absenteesSmoke(self):
         self.nav.Attendence()
         self.clickAbsentees()
-        self.verifyLog()
-        self.verifyDetails()
-        self.verifyMoreOptions()
-        self.verifySearchBar()
-        self.verifyAddBtn()
+        result = self.verifyLog()
+        self.stat.mark(result, "Verify Logs")
+        result1 = self.verifyDetails()
+        self.stat.mark(result1, "Verify Details")
+        result2 = self.verifyMoreOptions()
+        self.stat.mark(result2, "Verify More Options")
+        result3 = self.verifySearchBar()
+        self.stat.mark(result3, "Verify Search Bar")
+        result4 = self.verifyAddBtn()
+        self.stat.mark(result4, "Verify Add Button")
         self.waitForElement(self._table, locatorType='css')
-        self.verifyTable()
+        result5 = self.verifyTable()
+        self.stat.markFinal("Test_Absentees", result5, "Verify Table")
 
     def verifyTextLogs(self):
         text = self.getText(self._logs, locatorType='link')
         result = self.util.verifyTextContains(self._text_logs, text)
-        self.stat.mark(result, "Verify Text Logs")
+        return result
 
     def verifyTextDetails(self):
         text = self.getText(self._details, locatorType='link')
-        result1 = self.util.verifyTextContains(self._text_details, text)
-        self.stat.mark(result1, "Verify Text Details")
+        result = self.util.verifyTextContains(self._text_details, text)
+        return result
 
     def verifyTextAbsentees(self):
         text = self.getText(self._absentees, locatorType='link')
         result = self.util.verifyTextContains(self._text_absentees, text)
-        self.stat.mark(result, "Verify Text Absentees")
+        return result
 
     def verifyTextDepartment(self):
         text = self.getText(self._department, locatorType='css')
-        result2 = self.util.verifyTextContains(self._text_department, text)
-        self.stat.mark(result2, "Verify Text Department")
+        result = self.util.verifyTextContains(self._text_department, text)
+        return result
 
     def verifyTextName(self):
         text = self.getText(self._name, locatorType='css')
-        result3 = self.util.verifyTextContains(self._text_name, text)
-        self.stat.mark(result3, "Verify Text Name")
+        result = self.util.verifyTextContains(self._text_name, text)
+        return result
 
     def verifyTextPhone1(self):
         text = self.getText(self._phone1, locatorType='css')
-        result4 = self.util.verifyTextContains(self._text_phone1, text)
-        self.stat.mark(result4, "Verify Text Phone 1")
+        result = self.util.verifyTextContains(self._text_phone1, text)
+        return result
 
     def verifyTextPhone2(self):
         text = self.getText(self._phone2, locatorType='css')
-        result5 = self.util.verifyTextContains(self._text_phone2, text)
-        self.stat.markFinal("Test_Text Absentees", result5, "Verify Text Phone 2")
+        result = self.util.verifyTextContains(self._text_phone2, text)
+        return result
 
     def AbsenteesText(self):
-        self.verifyTextLogs()
-        self.verifyTextDetails()
-        self.verifyTextAbsentees()
-        self.verifyTextDepartment()
-        self.verifyTextName()
-        self.verifyTextPhone1()
-        self.verifyTextPhone2()
+        result = self.verifyTextLogs()
+        self.stat.mark(result, "Verify Text Logs")
+        result1 = self.verifyTextDetails()
+        self.stat.mark(result1, "Verify Text Details")
+        result2 = self.verifyTextAbsentees()
+        self.stat.mark(result2, "Verify Text Absentees")
+        result3 = self.verifyTextDepartment()
+        self.stat.mark(result3, "Verify Text Department")
+        result4 = self.verifyTextName()
+        self.stat.mark(result4, "Verify Text Name")
+        result5 = self.verifyTextPhone1()
+        self.stat.mark(result5, "Verify Text Phone 1")
+        result6 = self.verifyTextPhone2()
+        self.stat.markFinal("Test_Text Absentees", result6, "Verify Text Phone 2")

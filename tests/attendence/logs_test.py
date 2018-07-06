@@ -15,3 +15,6 @@ class TestLogs(unittest.TestCase):
     def test_Logs(self):
         self.lg.LogsSmoke()
 
+    @pytest.mark.run(order=2)
+    def test_LogsText(self):
+        self.lg.LogsText()

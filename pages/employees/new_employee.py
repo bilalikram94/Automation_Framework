@@ -25,62 +25,73 @@ class NewEmployee(BasePage):
 
     def verifyFirstName(self):
         result = self.isElementPresent(self._first_name, locatorType='xpath')
-        self.stat.mark(result, "Verify First Name")
+        return result
 
     def verifyLastName(self):
-        result1 = self.isElementPresent(self._last_name, locatorType='xpath')
-        self.stat.mark(result1, "Verify Last Name")
+        result = self.isElementPresent(self._last_name, locatorType='xpath')
+        return result
 
     def verifyEmployeeCard(self):
-        result2 = self.isElementPresent(self._employee_card, locatorType='xpath')
-        self.stat.mark(result2, "Verify Employee Card")
+        result = self.isElementPresent(self._employee_card, locatorType='xpath')
+        return result
 
     def verifyGender(self):
-        result3 = self.isElementPresent(self._gender, locatorType='xpath')
-        self.stat.mark(result3, "Verify Gender")
+        result = self.isElementPresent(self._gender, locatorType='xpath')
+        return result
 
     def verifyDateOfJoining(self):
-        result4 = self.isElementPresent(self._date_of_joining, locatorType='xpath')
-        self.stat.mark(result4, "Verify Date Of Joining")
+        result = self.isElementPresent(self._date_of_joining, locatorType='xpath')
+        return result
 
     def verifyDepartment(self):
-        result5 = self.isElementPresent(self._department)
-        self.stat.mark(result5, "Verify Department")
+        result = self.isElementPresent(self._department)
+        return result
 
     def verifyDesignation(self):
-        result6 = self.isElementPresent(self._designation)
-        self.stat.mark(result6, "Verify Designation")
+        result = self.isElementPresent(self._designation)
+        return result
 
     def verifyReportingPerson(self):
-        result7 = self.isElementPresent(self._reporting_person, locatorType='css')
-        self.stat.mark(result7, "Verify Reporting Person")
+        result = self.isElementPresent(self._reporting_person, locatorType='css')
+        return result
 
     def verifyTaxRule(self):
-        result8 = self.isElementPresent(self._tax_rule, locatorType='css')
-        self.stat.mark(result8, "Verify Tax Rule")
+        result = self.isElementPresent(self._tax_rule, locatorType='css')
+        return result
 
     def verifyUserRole(self):
         self.scrollIntoView(self._user_role, locatorType='css')
         self.util.sleep(3)
-        result9 = self.isElementPresent(self._user_role, locatorType='css')
-        self.stat.mark(result9, "Verify User Role")
+        result = self.isElementPresent(self._user_role, locatorType='css')
+        return result
 
     def verifyPolicyType(self):
         self.scrollIntoView(self._policy_type, locatorType='css')
-        result10 = self.isElementPresent(self._policy_type, locatorType='css')
-        self.stat.markFinal("Test New Employee", result10, "Verify Policy Type")
+        result = self.isElementPresent(self._policy_type, locatorType='css')
+        return result
 
     def NewEmployeeSmoke(self):
         self.nav.NewEmployee()
         self.verifyPageTitle(self._page_title)
-        self.verifyFirstName()
-        self.verifyLastName()
-        self.verifyEmployeeCard()
-        self.verifyGender()
-        self.verifyDateOfJoining()
-        self.verifyDepartment()
-        self.verifyDesignation()
-        self.verifyReportingPerson()
-        self.verifyTaxRule()
-        self.verifyUserRole()
-        self.verifyPolicyType()
+        result = self.verifyFirstName()
+        self.stat.mark(result, "Verify First Name")
+        result1 = self.verifyLastName()
+        self.stat.mark(result1, "Verify Last Name")
+        result2 = self.verifyEmployeeCard()
+        self.stat.mark(result2, "Verify Employee Card")
+        result3 = self.verifyGender()
+        self.stat.mark(result3, "Verify Gender")
+        result4 = self.verifyDateOfJoining()
+        self.stat.mark(result4, "Verify Date Of Joining")
+        result5 = self.verifyDepartment()
+        self.stat.mark(result5, "Verify Department")
+        result6 = self.verifyDesignation()
+        self.stat.mark(result6, "Verify Designation")
+        result7 = self.verifyReportingPerson()
+        self.stat.mark(result7, "Verify Reporting Person")
+        result8 = self.verifyTaxRule()
+        self.stat.mark(result8, "Verify Tax Rule")
+        result9 = self.verifyUserRole()
+        self.stat.mark(result9, "Verify User Role")
+        result10 = self.verifyPolicyType()
+        self.stat.markFinal("Test New Employee", result10, "Verify Policy Type")

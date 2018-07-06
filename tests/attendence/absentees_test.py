@@ -13,6 +13,6 @@ class TestAbsentees(unittest.TestCase):
     def test_Absentees(self):
         self.abs.absenteesSmoke()
 
-    @pytest.mark.run(order=1)
+    @pytest.mark.run(order=2)
     def test_AbsenteesText(self):
         self.abs.AbsenteesText()

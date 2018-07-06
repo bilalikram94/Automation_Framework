@@ -34,60 +34,70 @@ class SideMenu(BasePage):
 
     def verifyAttendance(self):
         result = self.isElementPresent(self._attendance, locatorType='link')
-        self.stat.mark(result, "Verify Attendence")
+        return result
 
     def verifyEmployee(self):
-        result1 = self.isElementPresent(self._employee, locatorType='link')
-        self.stat.mark(result1, "Verify Employee")
+        result = self.isElementPresent(self._employee, locatorType='link')
+        return result
 
     def verifySupportTicket(self):
-        result2 = self.isElementPresent(self._support_ticket, locatorType='link')
-        self.stat.mark(result2, "Verify Support Ticket")
+        result = self.isElementPresent(self._support_ticket, locatorType='link')
+        return result
 
     def verifyTraining(self):
-        result3 = self.isElementPresent(self._training, locatorType='link')
-        self.stat.mark(result3, "Verify Training")
+        result = self.isElementPresent(self._training, locatorType='link')
+        return result
 
     def verifyTimeOff(self):
-        result4 = self.isElementPresent(self._time_off, locatorType='link')
-        self.stat.markFinal("Test_Side Menu", result4, "Verify Time Off")
+        result = self.isElementPresent(self._time_off, locatorType='link')
+        return result
 
     def SideMenuSmoke(self):
         self.clickSideMenu()
-        self.verifyAttendance()
-        self.verifyEmployee()
-        self.verifySupportTicket()
-        self.verifyTraining()
-        self.verifyTimeOff()
+        result = self.verifyAttendance()
+        self.stat.mark(result, "Verify Attendence")
+        result1 = self.verifyEmployee()
+        self.stat.mark(result1, "Verify Employee")
+        result2 = self.verifySupportTicket()
+        self.stat.mark(result2, "Verify Support Ticket")
+        result3 = self.verifyTraining()
+        self.stat.mark(result3, "Verify Training")
+        result4 = self.verifyTimeOff()
+        self.stat.markFinal("Test_Side Menu", result4, "Verify Time Off")
 
     def verifyTextAttendance(self):
         text = self.getText(self._attendance, locatorType='link')
         result = self.util.verifyTextContains(self._text_attendance, text)
-        self.stat.mark(result, "Verify Text Attendence")
+        return result
 
     def verifyTextEmployee(self):
         text = self.getText(self._employee, locatorType='link')
-        result1 = self.util.verifyTextContains(self._text_employee, text)
-        self.stat.mark(result1, "Verify Text Employee")
+        result = self.util.verifyTextContains(self._text_employee, text)
+        return result
 
     def verifyTextSupportTicket(self):
         text = self.getText(self._support_ticket, locatorType='link')
-        result2 = self.util.verifyTextContains(self._text_support_ticket, text)
-        self.stat.mark(result2, "Verify Text Support Ticket")
+        result = self.util.verifyTextContains(self._text_support_ticket, text)
+        return result
 
     def verifyTextTraining(self):
         text = self.getText(self._training, locatorType='link')
-        result3 = self.util.verifyTextContains(self._text_training, text)
-        self.stat.mark(result3, "Verify Text Training")
+        result = self.util.verifyTextContains(self._text_training, text)
+        return result
 
     def verifyTextTimeOff(self):
         text = self.getText(self._time_off, locatorType='link')
-        result4 = self.util.verifyTextContains(self._text_time_off, text)
-        self.stat.markFinal("Test_Text SideMenu", result4, "Verify Text Time Off")
+        result = self.util.verifyTextContains(self._text_time_off, text)
+        return result
 
     def SideMenuText(self):
-        self.verifyTextAttendance()
-        self.verifyTextEmployee()
-        self.verifyTextSupportTicket()
-        self.verifyTextTraining()
-        self.verifyTextTimeOff()
+        result = self.verifyTextAttendance()
+        self.stat.mark(result, "Verify Text Attendence")
+        result1 = self.verifyTextEmployee()
+        self.stat.mark(result1, "Verify Text Employees")
+        result2 = self.verifyTextSupportTicket()
+        self.stat.mark(result2, "Verify Text Support Ticket")
+        result3 = self.verifyTextTraining()
+        self.stat.mark(result3, "Verify Text Training")
+        result4 = self.verifyTextTimeOff()
+        self.stat.markFinal("Test_Text SideMenu", result4, "Verify Text Time Off")

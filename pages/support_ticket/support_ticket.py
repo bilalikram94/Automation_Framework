@@ -19,46 +19,52 @@ class SupportTicket(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.ts = Status(driver)
         self.nav = Navigation(driver)
 
     def verifyMyTickets(self):
         result = self.isElementPresent(self._my_ticket, locatorType='link')
-        self.ts.mark(result, "Verify My Tickets")
+        return result
 
     def verifyCompanyTickets(self):
-        result1 = self.isElementPresent(self._company_tickets, locatorType='link')
-        self.ts.mark(result1, "Verify Company Tickets")
+        result = self.isElementPresent(self._company_tickets, locatorType='link')
+        return result
 
     def verifySearchBar(self):
-        result2 = self.isElementPresent(self._search_bar, locatorType='css')
-        self.ts.mark(result2, "Verify Search Bar")
+        result = self.isElementPresent(self._search_bar, locatorType='css')
+        return result
 
     def verifyOpenTicket(self):
-        result3 = self.isElementPresent(self._open_ticket, locatorType='css')
-        self.ts.mark(result3, "Verify Open Ticket")
+        result = self.isElementPresent(self._open_ticket, locatorType='css')
+        return result
 
     def verifyTickets(self):
-        result4 = self.isElementPresent(self._tickets, locatorType='css')
-        self.ts.mark(result4, "Verify Tickets")
+        result = self.isElementPresent(self._tickets, locatorType='css')
+        return result
 
     def verifyTextSupport(self):
         text = self.getText(self._text_supportticket, locatorType='css')
-        result5 = self.util.verifyTextContains("Support Tickets", text)
-        self.ts.mark(result5, "Verify Support Ticket Text")
+        result = self.util.verifyTextContains("Support Tickets", text)
+        return result
 
     def verifyTextOpen(self):
         text = self.getText(self._text_open, locatorType='xpath')
-        result6 = self.util.verifyTextContains("Open (4)", text)
-        self.ts.markFinal("Test_Support Ticket", result6, "Verify Open Text")
+        result = self.util.verifyTextContains("Open (4)", text)
+        return result
 
     def SupportTicketSmoke(self):
         self.nav.SupportTicket()
         self.verifyPageTitle(self._title)
-        self.verifyMyTickets()
-        self.verifyCompanyTickets()
-        self.verifySearchBar()
-        self.verifyOpenTicket()
-        self.verifyTickets()
-        self.verifyTextSupport()
-        self.verifyTextOpen()
+        result = self.verifyMyTickets()
+        self.stat.mark(result, "Verify My Tickets")
+        result1 = self.verifyCompanyTickets()
+        self.stat.mark(result1, "Verify Company Tickets")
+        result2 = self.verifySearchBar()
+        self.stat.mark(result2, "Verify Search Bar")
+        result3 = self.verifyOpenTicket()
+        self.stat.mark(result3, "Verify Open Ticket")
+        result4 = self.verifyTickets()
+        self.stat.mark(result4, "Verify Tickets")
+        result5 = self.verifyTextSupport()
+        self.stat.mark(result5, "Verify Support Ticket Text")
+        result6 = self.verifyTextOpen()
+        self.stat.markFinal("Test_Support Ticket", result6, "Verify Open Text")

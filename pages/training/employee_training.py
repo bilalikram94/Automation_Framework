@@ -39,86 +39,100 @@ class Training(BasePage):
 
     def verifySearchbar(self):
         result = self.isElementPresent(self._search_bar, locatorType='xpath')
-        self.stat.mark(result, "Verify Search Bar")
+        return result
 
     def verifyTextTitlePage(self):
         text = self.getText(self._page_title, locatorType='css')
-        result1 = self.util.verifyTextContains(self._text_page_title, text)
-        self.stat.mark(result1, "Verify Text Title Page")
+        result = self.util.verifyTextContains(self._text_page_title, text)
+        return result
 
     def verifyTextEmployeeTraining(self):
         text = self.getText(self._employee_training, locatorType='link')
-        result2 = self.util.verifyTextContains(self._text_employee_training, text)
-        self.stat.mark(result2, "Verify Text Employee Training")
+        result = self.util.verifyTextContains(self._text_employee_training, text)
+        return result
 
     def verifyTextTrainingEvaluation(self):
         text = self.getText(self._training_evaluation, locatorType='link')
-        result3 = self.util.verifyTextContains(self._text_training_evaluation, text)
-        self.stat.mark(result3, "Verify Text Training Evaluation")
+        result = self.util.verifyTextContains(self._text_training_evaluation, text)
+        return result
 
     def verifyTextTrainers(self):
         text = self.getText(self._trainers, locatorType='link')
-        result4 = self.util.verifyTextContains(self._text_trainers, text)
-        self.stat.mark(result4, "Verify Text Trainers")
+        result = self.util.verifyTextContains(self._text_trainers, text)
+        return result
 
     def verifyTextTrainingEvents(self):
         text = self.getText(self._training_events, locatorType='link')
-        result5 = self.util.verifyTextContains(self._text_training_events, text)
-        self.stat.mark(result5, "Verify Text Training Events")
+        result = self.util.verifyTextContains(self._text_training_events, text)
+        return result
 
     def verifyTextTrainingNeedsAssessment(self):
         text = self.getText(self._training_needs_assessment, locatorType='link')
-        result6 = self.util.verifyTextContains(self._text_training_needs_assessment, text)
-        self.stat.mark(result6, "Verify Text Training Needs Assessment")
+        result = self.util.verifyTextContains(self._text_training_needs_assessment, text)
+        return result
 
     def verifyTextAddNewTraining(self):
         text = self.getText(self._add_new_training, locatorType='css')
-        result7 = self.util.verifyTextContains(self._text_add_new_training, text)
-        self.stat.mark(result7, "Verify Text Add New Training")
+        result = self.util.verifyTextContains(self._text_add_new_training, text)
+        return result
 
     def verifyTextTrainingType(self):
         text = self.getText(self._training_type, locatorType='css')
-        result8 = self.util.verifyTextContains(self._text_training_type, text)
-        self.stat.mark(result8, "Verify Text Training Type")
+        result = self.util.verifyTextContains(self._text_training_type, text)
+        return result
 
     def verifyTextTableTitle(self):
         text = self.getText(self._table_title, locatorType='css')
-        result9 = self.util.verifyTextContains(self._text_table_title, text)
-        self.stat.mark(result9, "Verify Table Title")
+        result = self.util.verifyTextContains(self._text_table_title, text)
+        return result
 
     def verifyTextTrainingFrom(self):
         text = self.getText(self._training_from, locatorType='css')
-        result10 = self.util.verifyTextContains(self._text_training_from, text)
-        self.stat.mark(result10, "Verify Text Training From")
+        result = self.util.verifyTextContains(self._text_training_from, text)
+        return result
 
     def verifyTextTrainingTo(self):
         text = self.getText(self._training_to, locatorType='css')
-        result11 = self.util.verifyTextContains(self._text_training_to, text)
-        self.stat.mark(result11, "Verify Text Training To")
+        result = self.util.verifyTextContains(self._text_training_to, text)
+        return result
 
     def verifyTextActions(self):
         text = self.getText(self._actions, locatorType='css')
-        result12 = self.util.verifyTextContains(self._text_actions, text)
-        self.stat.mark(result12, "Verify Text Actions")
+        result = self.util.verifyTextContains(self._text_actions, text)
+        return result
 
     def verifyMoreOptions(self):
-        result13 = self.isElementPresent(self._more_options, locatorType='css')
-        self.stat.markFinal("Test Employee Training", result13, "Verify More Options")
+        result = self.isElementPresent(self._more_options, locatorType='css')
+        return result
 
     def EmployeeTrainingSmoke(self):
         self.nav.Training()
         self.verifyPageTitle(self._title)
-        self.verifySearchbar()
-        self.verifyTextTitlePage()
-        self.verifyTextEmployeeTraining()
-        self.verifyTextTrainingEvaluation()
-        self.verifyTextTrainers()
-        self.verifyTextTrainingEvents()
-        self.verifyTextTrainingNeedsAssessment()
-        self.verifyTextAddNewTraining()
-        self.verifyTextTrainingType()
-        self.verifyTextTableTitle()
-        self.verifyTextTrainingFrom()
-        self.verifyTextTrainingTo()
-        self.verifyTextActions()
-        self.verifyMoreOptions()
+        result = self.verifySearchbar()
+        self.stat.mark(result, "Verify Search Bar")
+        result1 = self.verifyTextTitlePage()
+        self.stat.mark(result1, "Verify Text Title Page")
+        result2 = self.verifyTextEmployeeTraining()
+        self.stat.mark(result2, "Verify Text Employee Training")
+        result3 = self.verifyTextTrainingEvaluation()
+        self.stat.mark(result3, "Verify Text Training Evaluation")
+        result4 = self.verifyTextTrainers()
+        self.stat.mark(result4, "Verify Text Trainers")
+        result5 = self.verifyTextTrainingEvents()
+        self.stat.mark(result5, "Verify Text Training Events")
+        result6 = self.verifyTextTrainingNeedsAssessment()
+        self.stat.mark(result6, "Verify Text Training Needs Assessment")
+        result7 = self.verifyTextAddNewTraining()
+        self.stat.mark(result7, "Verify Text Add New Training")
+        result8 = self.verifyTextTrainingType()
+        self.stat.mark(result8, "Verify Text Training Type")
+        result9 = self.verifyTextTableTitle()
+        self.stat.mark(result9, "Verify Table Title")
+        result10 = self.verifyTextTrainingFrom()
+        self.stat.mark(result10, "Verify Text Training From")
+        result11 = self.verifyTextTrainingTo()
+        self.stat.mark(result11, "Verify Text Training To")
+        result12 = self.verifyTextActions()
+        self.stat.mark(result12, "Verify Text Actions")
+        result13 = self.verifyMoreOptions()
+        self.stat.markFinal("Test Employee Training", result13, "Verify More Options")
