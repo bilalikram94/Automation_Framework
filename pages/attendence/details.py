@@ -23,85 +23,10 @@ class Details(BasePage):
     _time_spent = "thead tr .text-center:nth-of-type(5)"  # By CSS
     _break_time = "thead tr .text-center:nth-of-type(6)"  # By CSS
     _work_time = "thead tr .text-center:nth-of-type(7)"  # By CSS
-    _text_day = "day"  # Text
-    _text_date = "date"  # Text
-    _text_time_in = "time in"  # Text
-    _text_time_out = "time out"  # Text
-    _text_time_spent = "time spent"  # Text
-    _text_break_time = "break time"  # Text
-    _text_work_time = "work time"  # Text
-    _text_absentees = "absentees"  # Text
-    _text_details = "details"  # Text
-    _text_logs = "logs"  # Text
-    _text_add_new = "add new"  # Text
-    _text_export = "export"  # Text
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-
-    def verifyTextLogs(self):
-        text = self.getText(self._logs, locatorType='link')
-        result = self.util.verifyTextContains(self._text_logs, text)
-        return result
-
-    def verifyTextDetails(self):
-        text = self.getText(self._details, locatorType='link')
-        result = self.util.verifyTextContains(self._text_details, text)
-        return result
-
-    def verifyTextAbsentees(self):
-        text = self.getText(self._absentees, locatorType='link')
-        result = self.util.verifyTextContains(self._text_absentees, text)
-        return result
-
-    def verifyTextAddNew(self):
-        text = self.getText(self._add_new, locatorType='css')
-        result = self.util.verifyTextContains(self._text_add_new, text)
-        return result
-
-    def verifyTextExport(self):
-        text = self.getText(self._export, locatorType='css')
-        result = self.util.verifyTextContains(self._text_export, text)
-        return result
-
-    def verifyTextDay(self):
-        text = self.getText(self._day, locatorType='css')
-        result = self.util.verifyTextContains(self._text_day, text)
-        return result
-
-    def verifyTextDate(self):
-        text = self.getText(self._date, locatorType='css')
-        result = self.util.verifyTextContains(self._text_date, text)
-        return result
-
-    def verifyTextTimeIn(self):
-        text = self.getText(self._time_in, locatorType='css')
-        result = self.util.verifyTextContains(self._text_time_in, text)
-        return result
-
-    def verifyTextTimeOut(self):
-        text = self.getText(self._time_out, locatorType='css')
-        result = self.util.verifyTextContains(self._text_time_out, text)
-        return result
-
-    def verifyTextTimeSpent(self):
-        text = self.getText(self._time_spent, locatorType='css')
-        result = self.util.verifyTextContains(self._text_time_spent, text)
-        return result
-
-    def verifyTextBreakTime(self):
-        text = self.getText(self._break_time, locatorType='css')
-        result = self.util.verifyTextContains(self._text_break_time, text)
-        return result
-
-    def verifyTextWorkTime(self):
-        text = self.getText(self._work_time, locatorType='css')
-        result = self.util.verifyTextContains(self._text_work_time, text)
-        return result
-
-    def clickDetails(self):
-        self.elementClick(self._details, locatorType='link')
 
     def verifyLogs(self):
         result = self.isElementPresent(self._logs, locatorType='link')
@@ -132,8 +57,7 @@ class Details(BasePage):
         return result
 
     def DetailsSmoke(self):
-        self.nav.Attendence()
-        self.clickDetails()
+        self.nav.Details()
         result = self.verifyLogs()
         self.stat.mark(result, "Verify Details")
         result1 = self.verifyAbsentees()
@@ -149,28 +73,40 @@ class Details(BasePage):
         result6 = self.verifyTable()
         self.stat.markFinal("Test_Details Smoke", result6, "Verify Table")
 
-    def DetailsVerifyText(self):
-        result = self.verifyTextLogs()
-        self.stat.mark(result, "Verify Text Logs")
-        result1 = self.verifyTextDetails()
-        self.stat.mark(result1, "Verify Text Details")
-        result2 = self.verifyTextAbsentees()
-        self.stat.mark(result2, "Verify Text Absentees")
-        result3 = self.verifyTextAddNew()
-        self.stat.mark(result3, "Verify Text Add New")
-        result4 = self.verifyTextExport()
-        self.stat.mark(result4, "Verify Text Export")
-        result5 = self.verifyTextDay()
-        self.stat.mark(result5, "Verify Text Day")
-        result6 = self.verifyTextDate()
-        self.stat.mark(result6, "Verify Text Date")
-        result7 = self.verifyTextTimeIn()
-        self.stat.mark(result7, "Verify Text Time In")
-        result9 = self.verifyTextTimeOut()
-        self.stat.mark(result9, "Verify Text Time Out")
-        result10 = self.verifyTextTimeSpent()
-        self.stat.mark(result10, "Verify Text Time Spent")
-        result11 = self.verifyTextBreakTime()
-        self.stat.mark(result11, "Verify Text Break Time")
-        result12 = self.verifyTextWorkTime()
-        self.stat.markFinal("Test_Details Text Verify", result12, "Verify Text Work Time")
+    def DetailsVerifyText(self, _text_day, _text_date, _text_time_in, _text_time_out, _text_time_spent, _text_break_time, _text_work_time, _text_absentees, _text_details, _text_logs, _text_add_new, _text_export):
+        text = self.getText(self._day, locatorType='css')
+        result = self.util.verifyTextContains(_text_day, text)
+        self.stat.mark(result, "Verify Text Day ")
+        text1 = self.getText(self._date, locatorType='css')
+        result1 = self.util.verifyTextContains(_text_date, text1)
+        self.stat.mark(result1, "Verify Text Date")
+        text2 = self.getText(self._time_in, locatorType='css')
+        result2 = self.util.verifyTextContains(_text_time_in, text2)
+        self.stat.mark(result2, "Verify Text Time In")
+        text3 = self.getText(self._time_out, locatorType='css')
+        result3 = self.util.verifyTextContains(_text_time_out, text3)
+        self.stat.mark(result3, "Verify Text Time Out")
+        text4 = self.getText(self._time_spent, locatorType='css')
+        result4 = self.util.verifyTextContains(_text_time_spent, text4)
+        self.stat.mark(result4, "Verify Text Time Spent")
+        text5 = self.getText(self._break_time, locatorType='css')
+        result5 = self.util.verifyTextContains(_text_break_time, text5)
+        self.stat.mark(result5, "Verify Text Break Time")
+        text6 = self.getText(self._work_time, locatorType='css')
+        result6 = self.util.verifyTextContains(_text_work_time, text6)
+        self.stat.mark(result6, "Verify Text Work Time")
+        text7 = self.getText(self._absentees, locatorType='link')
+        result7 = self.util.verifyTextContains(_text_absentees, text7)
+        self.stat.mark(result7, "Verify Text Absentees")
+        text8 = self.getText(self._details, locatorType='link')
+        result8 = self.util.verifyTextContains(_text_details, text8)
+        self.stat.mark(result8, "Verify Text Details")
+        text9 = self.getText(self._logs, locatorType='link')
+        result9 = self.util.verifyTextContains(_text_logs, text9)
+        self.stat.mark(result9, "Verify Text Logs")
+        text10 = self.getText(self._add_new, locatorType='css')
+        result10 = self.util.verifyTextContains(_text_add_new, text10)
+        self.stat.mark(result10, "verify Text Add New")
+        text11 = self.getText(self._export, locatorType='css')
+        result11 = self.util.verifyTextContains(_text_export, text11)
+        self.stat.mark(result11, "Verify Text Export")

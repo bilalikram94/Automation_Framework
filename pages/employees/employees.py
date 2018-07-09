@@ -22,7 +22,7 @@ class Employees(BasePage):
     _designation = "thead tr th:nth-of-type(2)"  # By CSS
     _department = "thead tr th:nth-of-type(3)"  # By CSS
     _location = "thead tr th:nth-of-type(4)"  # By CSS
-    _status = "thead tr th:nth-of-type(1)"  # By CSS
+    _status = "thead tr th:nth-of-type(5)"  # By CSS
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -51,23 +51,22 @@ class Employees(BasePage):
         result2 = self.verifySearchBar()
         self.stat.markFinal("Test_Employees Smoke", result2, "Verify Search Bar")
 
-    def verifyTextNewEmployee(self, textcsv):
-        print("just testing ", textcsv)
+    def verifyTextEmployee(self, newemployeetext, nametext, designation, department, location, status):
         text = self.getText(self._new_employees, locatorType='link')
-        result = self.util.verifyTextContains(textcsv, text)
-        return result
-        #text1 = self.getText(self._employees, locatorType='css')
-        #result1 = self.util.verifyTextContains(textcsv, text1)
-        #self.stat.mark(result1, "Verify Text Employees")
-        #text2 = self.getText(self._active, locatorType='css')
-        #result2 = self.util.verifyTextContains(textcsv, text2)
-        #self.stat.markFinal("Test_Text Employees", result2, "Verify Text Active")
-
-    def verifyTextName(self, textcsv):
-        text = self.getText(self._name, locatorType='css')
-        result1 = self.util.verifyTextContains(textcsv, text)
-        return result1
-
-
-
-
+        result = self.util.verifyTextContains(newemployeetext, text)
+        self.stat.mark(result, "Verify Text Employees")
+        text2 = self.getText(self._name, locatorType='css')
+        result2 = self.util.verifyTextContains(nametext, text2)
+        self.stat.mark(result2, "Verify Text Name")
+        text3 = self.getText(self._designation, locatorType='css')
+        result3 = self.util.verifyTextContains(designation, text3)
+        self.stat.mark(result3, "Verify Text Designation")
+        text4 = self.getText(self._department, locatorType='css')
+        result4 = self.util.verifyTextContains(department, text4)
+        self.stat.mark(result4, "Verify Text Department")
+        text5 = self.getText(self._location, locatorType='css')
+        result5 = self.util.verifyTextContains(location, text5)
+        self.stat.mark(result5, "Verify Text Location")
+        text6 = self.getText(self._status, locatorType='css')
+        result6 = self.util.verifyTextContains(status, text6)
+        self.stat.markFinal("Test_Text Employees", result6, "Verify Text Status")

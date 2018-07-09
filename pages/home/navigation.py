@@ -13,6 +13,7 @@ class Navigation(SeleniumDriver):
     _time_off = 'Time Off'  # By Link
     _training = 'Training'  # By Link
     _new_employees = "New Employee"  # By Link
+    _details = "Detail"  # By Link
 
     def Attendence(self):
         self.elementClick(self._side_menu, locatorType='xpath')
@@ -37,3 +38,7 @@ class Navigation(SeleniumDriver):
     def NewEmployee(self):
         self.Employee()
         self.elementClick(self._new_employees, locatorType='link')
+
+    def Details(self):
+        self.Attendence()
+        self.elementClick(self._details, locatorType='link')

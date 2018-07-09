@@ -19,13 +19,6 @@ class Absentees(BasePage):
     _name = ".dataTables_scrollHeadInner [role] [align='left']:nth-of-type(2)"  # By CSS
     _phone1 = ".dataTables_scrollHeadInner [role] [align='left']:nth-of-type(3)"  # By CSS
     _phone2 = ".dataTables_scrollHeadInner [role] [align='left']:nth-of-type(4)"  # By CSS
-    _text_absentees = "absentees"  # Text
-    _text_details = "details"  # Text
-    _text_logs = "logs"  # Text
-    _text_department = "department"  # Text
-    _text_name = "name"  # Text
-    _text_phone1 = "phone 1"  # Text
-    _text_phone2 = "phone 2"  # Text
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -76,53 +69,25 @@ class Absentees(BasePage):
         result5 = self.verifyTable()
         self.stat.markFinal("Test_Absentees", result5, "Verify Table")
 
-    def verifyTextLogs(self):
-        text = self.getText(self._logs, locatorType='link')
-        result = self.util.verifyTextContains(self._text_logs, text)
-        return result
-
-    def verifyTextDetails(self):
-        text = self.getText(self._details, locatorType='link')
-        result = self.util.verifyTextContains(self._text_details, text)
-        return result
-
-    def verifyTextAbsentees(self):
+    def AbsenteesText(self, _text_absentees, _text_details, _text_logs, _text_department, _text_name, _text_phone1, _text_phone2):
         text = self.getText(self._absentees, locatorType='link')
-        result = self.util.verifyTextContains(self._text_absentees, text)
-        return result
-
-    def verifyTextDepartment(self):
-        text = self.getText(self._department, locatorType='css')
-        result = self.util.verifyTextContains(self._text_department, text)
-        return result
-
-    def verifyTextName(self):
-        text = self.getText(self._name, locatorType='css')
-        result = self.util.verifyTextContains(self._text_name, text)
-        return result
-
-    def verifyTextPhone1(self):
-        text = self.getText(self._phone1, locatorType='css')
-        result = self.util.verifyTextContains(self._text_phone1, text)
-        return result
-
-    def verifyTextPhone2(self):
-        text = self.getText(self._phone2, locatorType='css')
-        result = self.util.verifyTextContains(self._text_phone2, text)
-        return result
-
-    def AbsenteesText(self):
-        result = self.verifyTextLogs()
-        self.stat.mark(result, "Verify Text Logs")
-        result1 = self.verifyTextDetails()
+        result = self.util.verifyTextContains(_text_absentees, text)
+        self.stat.mark(result, "Verify Text Absentees")
+        text1 = self.getText(self._details, locatorType='link')
+        result1 = self.util.verifyTextContains(_text_details, text1)
         self.stat.mark(result1, "Verify Text Details")
-        result2 = self.verifyTextAbsentees()
-        self.stat.mark(result2, "Verify Text Absentees")
-        result3 = self.verifyTextDepartment()
+        text2 = self.getText(self._logs, locatorType='link')
+        result2 = self.util.verifyTextContains(_text_logs, text2)
+        self.stat.mark(result2, "Verify Text Logs")
+        text3 = self.getText(self._department, locatorType='css')
+        result3 = self.util.verifyTextContains(_text_department, text3)
         self.stat.mark(result3, "Verify Text Department")
-        result4 = self.verifyTextName()
+        text4 = self.getText(self._name, locatorType='css')
+        result4 = self.util.verifyTextContains(_text_name, text4)
         self.stat.mark(result4, "Verify Text Name")
-        result5 = self.verifyTextPhone1()
+        text5 = self.getText(self._phone1, locatorType='css')
+        result5 = self.util.verifyTextContains(_text_phone1, text5)
         self.stat.mark(result5, "Verify Text Phone 1")
-        result6 = self.verifyTextPhone2()
-        self.stat.markFinal("Test_Text Absentees", result6, "Verify Text Phone 2")
+        text6 = self.getText(self._phone2, locatorType='css')
+        result6 = self.util.verifyTextContains(_text_phone2, text6)
+        self.stat.markFinal("Test_Absentees Text", result6, "Verify Text Phone 2")
