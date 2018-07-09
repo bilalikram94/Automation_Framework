@@ -18,11 +18,6 @@ class SideMenu(BasePage):
     _more_options = ".advance-btn"  # By CSS
     _add_new = ".btn-blue.btn-action"  # By CSS
     _notifications = "//ul[@id='cd-primary-nav']/li[4]/a[@href='#']"  # By Xpath
-    _text_attendance = "attendance"  # Text
-    _text_employee = "employees"   # Text
-    _text_support_ticket = "support tickets"  # Text
-    _text_time_off = "time off"  # Text
-    _text_training = "training"  # Text
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -65,39 +60,19 @@ class SideMenu(BasePage):
         result4 = self.verifyTimeOff()
         self.stat.markFinal("Test_Side Menu", result4, "Verify Time Off")
 
-    def verifyTextAttendance(self):
+    def SideMenuText(self, _text_attendance, _text_employee, _text_support_ticket, _text_training, _text_time_off):
         text = self.getText(self._attendance, locatorType='link')
-        result = self.util.verifyTextContains(self._text_attendance, text)
-        return result
-
-    def verifyTextEmployee(self):
-        text = self.getText(self._employee, locatorType='link')
-        result = self.util.verifyTextContains(self._text_employee, text)
-        return result
-
-    def verifyTextSupportTicket(self):
-        text = self.getText(self._support_ticket, locatorType='link')
-        result = self.util.verifyTextContains(self._text_support_ticket, text)
-        return result
-
-    def verifyTextTraining(self):
-        text = self.getText(self._training, locatorType='link')
-        result = self.util.verifyTextContains(self._text_training, text)
-        return result
-
-    def verifyTextTimeOff(self):
-        text = self.getText(self._time_off, locatorType='link')
-        result = self.util.verifyTextContains(self._text_time_off, text)
-        return result
-
-    def SideMenuText(self):
-        result = self.verifyTextAttendance()
+        result = self.util.verifyTextContains(_text_attendance, text)
         self.stat.mark(result, "Verify Text Attendence")
-        result1 = self.verifyTextEmployee()
-        self.stat.mark(result1, "Verify Text Employees")
-        result2 = self.verifyTextSupportTicket()
+        text1 = self.getText(self._employee, locatorType='link')
+        result1 = self.util.verifyTextContains(_text_employee, text1)
+        self.stat.mark(result1, "Verify Text Employee")
+        text2 = self.getText(self._support_ticket, locatorType='link')
+        result2 = self.util.verifyTextContains(_text_support_ticket, text2)
         self.stat.mark(result2, "Verify Text Support Ticket")
-        result3 = self.verifyTextTraining()
+        text3 = self.getText(self._training, locatorType='link')
+        result3 = self.util.verifyTextContains(_text_training, text3)
         self.stat.mark(result3, "Verify Text Training")
-        result4 = self.verifyTextTimeOff()
-        self.stat.markFinal("Test_Text SideMenu", result4, "Verify Text Time Off")
+        text4 = self.getText(self._time_off, locatorType='link')
+        result4 = self.util.verifyTextContains(_text_time_off, text4)
+        self.stat.markFinal("Test_Logs Text", result4, "Verify Text Time Off")
