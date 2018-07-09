@@ -20,52 +20,10 @@ class Logs(BasePage):
     _name = ".dataTables_scrollHeadInner [role] [align='left']:nth-of-type(1)"  # By CSS
     _date_time = ".dataTables_scrollHeadInner [role] [align='left']:nth-of-type(2)"  # By CSS
     _status = ".dataTables_scrollHeadInner [align='center']"  # By CSS
-    _text_name = "name"  # Text
-    _text_add_new = "add new"  # Text
-    _text_date_time = "date time"  # Text
-    _text_status = "status"  # Text
-    _text_absentees = "absentees"  # Text
-    _text_details = "details"  # Text
-    _text_logs = "logs"  # Text
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-
-    def verifyTextLogs(self):
-        text = self.getText(self._logs, locatorType='link')
-        result = self.util.verifyTextContains(self._text_logs, text)
-        return result
-
-    def verifyTextDetails(self):
-        text = self.getText(self._details, locatorType='link')
-        result = self.util.verifyTextContains(self._text_details, text)
-        return result
-
-    def verifyTextAbsentees(self):
-        text = self.getText(self._absentees, locatorType='link')
-        result = self.util.verifyTextContains(self._text_absentees, text)
-        return result
-
-    def verifyTextAddNew(self):
-        text = self.getText(self._add_new, locatorType='css')
-        result = self.util.verifyTextContains(self._text_add_new, text)
-        return result
-
-    def verifyTextName(self):
-        text = self.getText(self._name, locatorType='css')
-        result = self.util.verifyTextContains(self._text_name, text)
-        return result
-
-    def verifyTextDateTime(self):
-        text = self.getText(self._date_time, locatorType='css')
-        result = self.util.verifyTextContains(self._text_date_time, text)
-        return result
-
-    def verifyTextStatus(self):
-        text = self.getText(self._status, locatorType='css')
-        result = self.util.verifyTextContains(self._text_status, text)
-        return result
 
     def verifyLogs(self):
         result = self.isElementPresent(self._logs, locatorType='link')
@@ -121,18 +79,25 @@ class Logs(BasePage):
         result7 = self.verifyDropDown()
         self.stat.markFinal("Test_Logs", result7, "Verify Drop Down")
 
-    def LogsText(self):
-        result = self.verifyTextLogs()
-        self.stat.mark(result, "Verify Text Logs")
-        result1 = self.verifyTextDetails()
-        self.stat.mark(result1, "Verify Text Details")
-        result2 = self.verifyTextAbsentees()
-        self.stat.mark(result2, "Verify Text Absentees")
-        result3 = self.verifyTextAddNew()
-        self.stat.mark(result3, "Verify Text Add New")
-        result4 = self.verifyTextName()
-        self.stat.mark(result4, "Verify Text Name")
-        result5 = self.verifyTextDateTime()
-        self.stat.mark(result5, "Verify Text Date Time")
-        result6 = self.verifyTextStatus()
-        self.stat.markFinal("Test_Text Logs", result6, "Verify Text Status")
+    def LogsText(self, _text_name, _text_add_new, _text_date_time, _text_status, _text_absentees, _text_details, _text_logs):
+        text = self.getText(self._name, locatorType='css')
+        result = self.util.verifyTextContains(_text_name, text)
+        self.stat.mark(result, "Verify Text Name")
+        text1 = self.getText(self._add_new, locatorType='css')
+        result1 = self.util.verifyTextContains(_text_add_new, text1)
+        self.stat.mark(result1, "Verify Text Add New")
+        text2 = self.getText(self._date_time, locatorType='css')
+        result2 = self.util.verifyTextContains(_text_date_time, text2)
+        self.stat.mark(result2, "Verify Text Date Time")
+        text3 = self.getText(self._status, locatorType='css')
+        result3 = self.util.verifyTextContains(_text_status, text3)
+        self.stat.mark(result3, "verify Text Status")
+        text4 = self.getText(self._absentees, locatorType='link')
+        result4 = self.util.verifyTextContains(_text_absentees, text4)
+        self.stat.mark(result4, "Verify Text Absentees")
+        text5 = self.getText(self._details, locatorType='link')
+        result5 = self.util.verifyTextContains(_text_details, text5)
+        self.stat.mark(result5, "Verify Text Details")
+        text6 = self.getText(self._logs, locatorType='link')
+        result6 = self.util.verifyTextContains(_text_logs, text6)
+        self.stat.markFinal("Test_Log Text", result6, "Verify Text Logs")
