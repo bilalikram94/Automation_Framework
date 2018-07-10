@@ -13,8 +13,6 @@ the test will not be collected
 @ddt
 class TestSideMenu(unittest.TestCase):
 
-    sm = None
-
     @pytest.fixture(autouse=True)
     def classSetup(self, oneTimeSetUp):
         self.sm = SideMenu(self.driver)
@@ -27,4 +25,4 @@ class TestSideMenu(unittest.TestCase):
     @data(*getCVSData("/home/bilalikram/PycharmProjects/Automation_Framework/sidemenuText.csv"))
     @unpack
     def test_SideMenu1(self, _text_attendance, _text_employee, _text_support_ticket, _text_training, _text_time_off):
-        self.sm.SideMenuText(_text_attendance,_text_employee,_text_support_ticket,_text_training,_text_time_off)
+        self.sm.SideMenuText(_text_attendance, _text_employee, _text_support_ticket, _text_training, _text_time_off)
