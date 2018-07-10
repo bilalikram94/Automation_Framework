@@ -21,18 +21,6 @@ class Training(BasePage):
     _training_to = "thead tr th:nth-of-type(4)"  # By CSS
     _actions = "thead .text-right"  # By CSS
     _more_options = "tbody tr:nth-of-type(1) .dropdown"  # By CSS
-    _text_page_title = "employee training"
-    _text_employee_training = "employee training"  # Text
-    _text_training_evaluation = "training evaluations"  # Text
-    _text_trainers = "trainers"  # Text
-    _text_training_events = "training events"  # Text
-    _text_training_needs_assessment = "training needs assessment"  # Text
-    _text_add_new_training = "add new training"  # Text
-    _text_training_type = "training type"  # Text
-    _text_table_title = "title"  # Text
-    _text_training_from = "training from"  # Text
-    _text_training_to = "training to"  # Text
-    _text_actions = "actions"  # Text
 
     def __init__(self, driver):
         super().__init__(driver)
