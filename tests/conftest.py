@@ -21,7 +21,7 @@ def oneTimeSetUp(request, browser):
     wdf = WebDriverFactory(browser)
     driver = wdf.getWebDriverInstance()
     lp = LoginPage(driver)
-    lp.login("networks@cubixlabs.com", "admin.password")
+    lp.login("networks@cubixlabs.com", "Cubix@786")
 
     if request.cls is not None:
         request.cls.driver = driver
