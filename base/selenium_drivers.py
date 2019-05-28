@@ -6,6 +6,7 @@ from selenium.common.exceptions import *
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 import utilities.custom_logger as cl
+from base.webdriverfactory import WebDriverFactory
 import logging
 import time
 import os
@@ -63,6 +64,7 @@ class SeleniumDriver:
             byType = self.getByType(locatorType)
             element = self.driver.find_elements(byType, locator)
             self.log.info("Element found with: " + locator + "and locatorType: " + locatorType)
+            return True
         except:
             self.log.error("Element List not found with locator: " + locator + "and locatorType" + locatorType)
             return element
@@ -80,6 +82,7 @@ class SeleniumDriver:
         except:
             self.log.error("Cannot click on the element with locator: " + locator + " locatorType: " + locatorType)
             print_stack()
+            return False
 
     def sendKeys(self, data, locator, locatorType="id", element=None):
         try:
@@ -88,10 +91,12 @@ class SeleniumDriver:
             element.send_keys(data)
             self.log.info("Sent data on element with locator: " + locator +
                           " locatorType: " + locatorType)
+            return True
         except:
             self.log.error("Cannot send data on the element with locator: " + locator +
                            " locatorType: " + locatorType)
             print_stack()
+            return False
 
     def clearField(self, locator, locatorType="id", element=None):
         """
@@ -106,6 +111,7 @@ class SeleniumDriver:
         except:
             self.log.error("Element not found by locator: " + locator + "locatorType: " + locatorType)
             print_stack()
+            return False
 
     def isElementPresent(self, locator, locatorType="id", element=None):
         try:
@@ -253,6 +259,7 @@ class SeleniumDriver:
         except:
             self.log.error("Cannot find element with locator: " + locator + " locatorType: " + locatorType)
             print_stack()
+            return False
 
     def mouseClick(self, locator, locatorType="id", element=None):
         """
@@ -353,3 +360,82 @@ class SeleniumDriver:
             self.log.error("### Can NOT find Element with locator: " + locator + "locatorType: " + locatorType)
             self.log.error("### Can't select value: " + val)
             return False
+
+    def alertBox(self):
+        """
+        Switches between alerts and main window
+
+        :return:
+        """
+        try:
+            self.driver.switch_to.alert()
+            self.log.info("Switched to alert successfully")
+            return True
+        except:
+            self.log.error("No Alert Present !!!")
+            return False
+
+    def refreshPage(self):
+        """
+        Refreshes a current Web page
+        :return:
+        """
+        try:
+            self.driver.refresh()
+            self.log.info("!!! Page Successfully Loaded !!!")
+            return True
+        except:
+            self.log.error("#### Couldn't Load Page ####")
+            return False
+
+    def switchToiFrame(self, iFrame):
+        """
+        switch to iFrame but need the xpath of the iFrame
+        once you have finished to work on iframe u need to switch back to default view.
+        :return:
+        """
+        try:
+            if iFrame is not None:
+                self.driver.switch_to.frame(iFrame)
+                self.log.info("Successfully switched to iFrame")
+                return True
+        except:
+            self.log.error("Cant Switch to iFrame")
+            return False
+
+    def switchToDefaultWindow(self):
+        """
+        use this method if you are done working on iFrame.
+        :return:
+        """
+        try:
+            self.driver.switch_to.default_content()
+            self.log.info("!!! Successfully switched back to dafault Window !!!")
+            return True
+        except:
+            self.log.error("#### Cant Switch Back to Default Window #####")
+            return False
+
+    def navigateHome(self, baseURL):
+        """
+        use this method to navigates to the page given in the base url
+        :return:
+        """
+        try:
+            self.driver.execute_script("window.location.href = '" + baseURL + "'")
+            self.log.info("Navigated to the home url")
+
+        except:
+            self.log.error("### Can't Navigate Back ###")
+
+    def navigateBack(self):
+        """
+        use this method to navigate to the previous page
+        :return:
+        """
+        try:
+            self.driver.execute_script("window.history.go(-1)")
+            self.log.info("Navigated to the previous page")
+
+        except:
+            self.log.error("### Can't Navigate Back ###")
